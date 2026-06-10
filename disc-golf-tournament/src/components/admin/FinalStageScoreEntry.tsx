@@ -1,22 +1,25 @@
 import { useTournament } from '../../context/TournamentContext';
-import { participantLabel } from '../../lib/display';
+import { finalMatchTitle, finalRoundTitle, participantLabel } from '../../lib/display';
 import { ScoreEditor } from './ScoreEditor';
 
 export function FinalStageScoreEntry() {
   const { data, dispatch } = useTournament();
+  const completedMatches = data.finalStageMatches.filter((match) => match.winnerId).length;
 
   return (
     <section className="panel">
       <div className="panel-heading">
         <h2>Final Stage Scores</h2>
-        <span>Long tee positions</span>
+        <span>
+          {completedMatches}/{data.finalStageMatches.length} complete
+        </span>
       </div>
       <div className="admin-match-list">
         {data.finalStageMatches.map((match) => (
           <article className="subpanel" key={match.id}>
             <div className="panel-heading">
-              <h3>{match.roundName === 'thirdPlace' ? 'Third Place' : match.roundName}</h3>
-              <span>{match.id}</span>
+              <h3>{finalMatchTitle(match.roundName, match.roundOrder)}</h3>
+              <span>{finalRoundTitle(match.roundName)}</span>
             </div>
             <ScoreEditor
               player1={participantLabel(match.participant1, data)}

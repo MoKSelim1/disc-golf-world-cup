@@ -469,6 +469,23 @@ button[type='submit'],
   margin-bottom: 14px;
 }
 
+.readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.readiness-grid span {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.65rem;
+  background: #f8faf7;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
 .publish-grid__wide {
   grid-column: 1 / -1;
 }
@@ -508,7 +525,8 @@ button[type='submit'] {
   .hero-band,
   .score-editor,
   .player-editor,
-  .publish-grid {
+  .publish-grid,
+  .readiness-grid {
     grid-template-columns: 1fr;
   }
 

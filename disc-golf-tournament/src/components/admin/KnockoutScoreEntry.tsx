@@ -1,23 +1,26 @@
 import { useTournament } from '../../context/TournamentContext';
-import { participantLabel } from '../../lib/display';
+import { knockoutMatchTitle, participantLabel } from '../../lib/display';
 import { knockoutSort } from '../../lib/display';
 import { ScoreEditor } from './ScoreEditor';
 
 export function KnockoutScoreEntry() {
   const { data, dispatch } = useTournament();
+  const completedMatches = data.knockoutMatches.filter((match) => match.winnerId).length;
 
   return (
     <section className="panel">
       <div className="panel-heading">
         <h2>Knockout Scores</h2>
-        <span>Round 1 and Round 2</span>
+        <span>
+          {completedMatches}/{data.knockoutMatches.length} complete
+        </span>
       </div>
       <div className="admin-match-list">
         {[...data.knockoutMatches].sort(knockoutSort).map((match) => (
           <article className="subpanel" key={match.id}>
             <div className="panel-heading">
               <h3>
-                Round {match.round} - {match.label.toUpperCase()}
+                Round {match.round} - {knockoutMatchTitle(match)}
               </h3>
               <span>Pod {match.podIndex + 1}</span>
             </div>

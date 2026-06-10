@@ -13,6 +13,10 @@ export function PublishPanel() {
   const [path, setPath] = useState('disc-golf-tournament/public/data/tournament.json');
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
+  const groupMatches = data.groups.flatMap((group) => group.matches);
+  const completedGroupMatches = groupMatches.filter((match) => match.winnerId).length;
+  const completedKnockoutMatches = data.knockoutMatches.filter((match) => match.winnerId).length;
+  const completedFinalMatches = data.finalStageMatches.filter((match) => match.winnerId).length;
 
   useEffect(() => {
     setToken(sessionStorage.getItem(TOKEN_KEY) ?? '');
@@ -64,6 +68,11 @@ export function PublishPanel() {
       <p className="panel-note">
         Token is stored only for this browser session. Publish updates the JSON file on the selected branch.
       </p>
+      <div className="readiness-grid">
+        <span>Groups: {completedGroupMatches}/{groupMatches.length}</span>
+        <span>Knockout: {completedKnockoutMatches}/{data.knockoutMatches.length}</span>
+        <span>Finals: {completedFinalMatches}/{data.finalStageMatches.length}</span>
+      </div>
       <div className="publish-grid">
         <label>
           GitHub token

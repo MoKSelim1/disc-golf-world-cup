@@ -1,4 +1,4 @@
-import type { KnockoutMatch, ParticipantRef, Player, PlayerId, TournamentData } from '../types/tournament';
+import type { FinalRoundName, KnockoutMatch, ParticipantRef, Player, PlayerId, TournamentData } from '../types/tournament';
 import { countryFlag } from './countries';
 import { computeGroupStandings } from './groupStandings';
 
@@ -46,4 +46,26 @@ export function knockoutSort(a: KnockoutMatch, b: KnockoutMatch): number {
   if (a.round !== b.round) return a.round - b.round;
   if (a.podIndex !== b.podIndex) return a.podIndex - b.podIndex;
   return a.label.localeCompare(b.label);
+}
+
+export function knockoutMatchTitle(match: KnockoutMatch): string {
+  if (match.round === 1) return match.label === 'A' ? 'Qualifier A' : 'Qualifier B';
+  return match.label === 'seed1' ? 'Group winner path 1' : 'Group winner path 2';
+}
+
+export function finalRoundTitle(roundName: FinalRoundName): string {
+  const labels: Record<FinalRoundName, string> = {
+    roundOf16: 'Round of 16',
+    quarterfinal: 'Quarterfinal',
+    semifinal: 'Semifinal',
+    final: 'Final',
+    thirdPlace: 'Third Place',
+  };
+  return labels[roundName];
+}
+
+export function finalMatchTitle(roundName: FinalRoundName, order: number): string {
+  if (roundName === 'final') return 'Championship Final';
+  if (roundName === 'thirdPlace') return 'Third Place Match';
+  return `Match ${order + 1}`;
 }

@@ -1,6 +1,14 @@
 import type { FinalStageMatch, KnockoutMatch } from '../../types/tournament';
 import { MatchCard } from './MatchCard';
-import { knockoutSort, participantLabel, formatPlayer, getPlayer } from '../../lib/display';
+import {
+  finalMatchTitle,
+  finalRoundTitle,
+  knockoutMatchTitle,
+  knockoutSort,
+  participantLabel,
+  formatPlayer,
+  getPlayer,
+} from '../../lib/display';
 import { useTournament } from '../../context/TournamentContext';
 
 export function KnockoutBracket() {
@@ -19,7 +27,7 @@ export function KnockoutBracket() {
               <MatchCard
                 key={match.id}
                 eyebrow={`Pod ${match.podIndex + 1}`}
-                title={match.label.toUpperCase()}
+                title={knockoutMatchTitle(match)}
                 player1={participantLabel(match.participant1, data)}
                 player2={participantLabel(match.participant2, data)}
                 player1Score={match.player1Score}
@@ -48,12 +56,12 @@ export function FinalBracket() {
           if (matches.length === 0) return null;
           return (
             <section className="bracket-round" key={roundName}>
-              <h3>{roundName === 'thirdPlace' ? 'Third Place' : roundName}</h3>
+              <h3>{finalRoundTitle(roundName)}</h3>
               {matches.map((match) => (
                 <MatchCard
                   key={match.id}
                   eyebrow="Final Stage"
-                  title={match.roundName === 'final' ? 'Final' : `Match ${match.roundOrder + 1}`}
+                  title={finalMatchTitle(match.roundName, match.roundOrder)}
                   player1={participantLabel(match.participant1, data)}
                   player2={participantLabel(match.participant2, data)}
                   player1Score={match.player1Score}
