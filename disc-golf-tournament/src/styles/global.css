@@ -1,0 +1,389 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --bg: #f7f6f2;
+  --ink: #202721;
+  --muted: #69756d;
+  --panel: #ffffff;
+  --line: #d9ddd6;
+  --green: #256b4f;
+  --green-dark: #164735;
+  --blue: #225f87;
+  --gold: #c9922a;
+  --danger: #9b3d2e;
+  --shadow: 0 12px 30px rgba(27, 38, 30, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(135deg, rgba(37, 107, 79, 0.1), transparent 35%),
+    linear-gradient(315deg, rgba(34, 95, 135, 0.12), transparent 32%),
+    var(--bg);
+  color: var(--ink);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.7rem 0.75rem;
+  color: var(--ink);
+  background: #fff;
+}
+
+label {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+}
+
+th,
+td {
+  padding: 0.75rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+
+.topbar {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.topbar h1,
+.hero-band h2,
+.panel-heading h2 {
+  margin: 0;
+}
+
+.topbar h1 {
+  font-size: clamp(2rem, 6vw, 4.4rem);
+  line-height: 0.95;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.nav-tabs,
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nav-tab {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.nav-tab--active,
+button[type='submit'],
+.panel > button {
+  background: var(--green);
+  color: white;
+}
+
+.page-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.hero-band,
+.panel,
+.stat-card,
+.match-card,
+.subpanel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.hero-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px;
+  min-height: 250px;
+  padding: clamp(24px, 5vw, 54px);
+  background:
+    linear-gradient(135deg, rgba(22, 71, 53, 0.92), rgba(34, 95, 135, 0.78)),
+    repeating-linear-gradient(90deg, transparent 0 28px, rgba(255, 255, 255, 0.06) 28px 30px);
+  color: white;
+  overflow: hidden;
+}
+
+.hero-band .eyebrow {
+  color: #b7e4c7;
+}
+
+.hero-band h2 {
+  max-width: 720px;
+  font-size: clamp(2.5rem, 8vw, 6.5rem);
+  line-height: 0.92;
+}
+
+.hero-metrics,
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-metrics span,
+.pill {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 0.45rem 0.7rem;
+  background: rgba(255, 255, 255, 0.13);
+  font-weight: 800;
+}
+
+.pill {
+  border-color: var(--line);
+  background: #f8faf7;
+}
+
+.stat-grid,
+.content-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.content-grid--two {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.stat-card,
+.panel,
+.subpanel {
+  padding: 18px;
+}
+
+.stat-card {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.stat-card span,
+.panel-heading span,
+.match-card__topline span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.stat-card strong {
+  font-size: 1.55rem;
+}
+
+.stat-card--large strong {
+  font-size: 2rem;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.panel-heading--loose {
+  margin-bottom: 0;
+}
+
+.match-grid,
+.admin-match-list,
+.player-editor-list {
+  display: grid;
+  gap: 12px;
+}
+
+.match-card {
+  display: grid;
+  gap: 10px;
+  min-width: 245px;
+  padding: 14px;
+  box-shadow: none;
+}
+
+.match-card__topline,
+.match-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.match-row {
+  min-height: 36px;
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  background: #f8faf7;
+}
+
+.match-status,
+.score-editor__status,
+.publish-status,
+.form-error {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.match-status--warning,
+.score-editor__status--warning,
+.form-error {
+  color: var(--danger);
+}
+
+.bracket-scroll {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.bracket {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 1fr);
+  gap: 16px;
+  min-width: 620px;
+}
+
+.bracket-round {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.bracket-round h3,
+.subpanel h3,
+.prose h3 {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.score-editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 12px;
+}
+
+.score-editor input {
+  max-width: 110px;
+}
+
+.player-editor,
+.publish-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.publish-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 14px;
+}
+
+.publish-grid__wide {
+  grid-column: 1 / -1;
+}
+
+.panel > button,
+button[type='submit'] {
+  border-radius: 6px;
+  padding: 0.78rem 1rem;
+  font-weight: 900;
+}
+
+.panel > button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.admin-gate {
+  max-width: 440px;
+}
+
+.admin-gate form {
+  display: grid;
+  gap: 12px;
+}
+
+.prose {
+  max-width: 850px;
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 12px;
+  }
+
+  .hero-band,
+  .score-editor,
+  .player-editor,
+  .publish-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

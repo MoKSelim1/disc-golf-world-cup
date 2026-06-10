@@ -1,0 +1,62 @@
+import { useTournament } from '../context/TournamentContext';
+import { computeGroupStandings } from '../lib/groupStandings';
+import { formatPlayer, getPlayer } from '../lib/display';
+import { MatchCard } from '../components/common/MatchCard';
+
+export function GroupsPage() {
+  const { data } = useTournament();
+
+  return (
+    <div className="page-stack">
+      {data.groups.map((group) => (
+        <section className="panel" key={group.id}>
+          <div className="panel-heading">
+            <h2>{group.name}</h2>
+            <span>Short pads, three weeks</span>
+          </div>
+          <div className="content-grid content-grid--two">
+            <div>
+              <h3>Standings</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Wins</th>
+                    <th>Played</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {computeGroupStandings(group).map((row) => (
+                    <tr key={row.playerId}>
+                      <td>{row.rank}</td>
+                      <td>{formatPlayer(getPlayer(data.players, row.playerId))}</td>
+                      <td>{row.wins}</td>
+                      <td>{row.played}</td>
+                      <td>{row.totalScore}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="match-grid">
+              {group.matches.map((match) => (
+                <MatchCard
+                  key={match.id}
+                  eyebrow={`Week ${match.week}`}
+                  title={match.id.toUpperCase()}
+                  player1={formatPlayer(getPlayer(data.players, match.player1Id))}
+                  player2={formatPlayer(getPlayer(data.players, match.player2Id))}
+                  player1Score={match.player1Score}
+                  player2Score={match.player2Score}
+                  winner={formatPlayer(getPlayer(data.players, match.winnerId))}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
