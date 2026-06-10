@@ -110,11 +110,15 @@ th {
 .nav-tabs,
 .admin-tabs {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
 }
 
 .nav-tab {
+  flex: 0 0 auto;
   min-height: 42px;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -149,10 +153,10 @@ button[type='submit'],
 
 .hero-band {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
   gap: 24px;
-  min-height: 250px;
+  min-height: 235px;
   padding: clamp(24px, 5vw, 54px);
   background:
     linear-gradient(135deg, rgba(22, 71, 53, 0.92), rgba(34, 95, 135, 0.78)),
@@ -167,7 +171,7 @@ button[type='submit'],
 
 .hero-band h2 {
   max-width: 720px;
-  font-size: clamp(2.5rem, 8vw, 6.5rem);
+  font-size: clamp(2.55rem, 7vw, 5.7rem);
   line-height: 0.92;
 }
 
@@ -215,6 +219,7 @@ button[type='submit'],
 .stat-card {
   display: grid;
   gap: 0.3rem;
+  align-content: start;
 }
 
 .stat-card span,
@@ -229,20 +234,134 @@ button[type='submit'],
   font-size: 1.55rem;
 }
 
+.progress-track {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8ede7;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+}
+
 .stat-card--large strong {
   font-size: 2rem;
 }
 
-.panel-heading {
+.panel-heading,
+.section-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+
+.section-heading {
+  margin-top: 6px;
+}
+
+.section-heading h2 {
+  margin-bottom: 16px;
+}
+
+.panel-heading {
   margin-bottom: 16px;
 }
 
 .panel-heading--loose {
   margin-bottom: 0;
+}
+
+.section-heading span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.dashboard-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.group-summary-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.rank-list {
+  display: grid;
+  gap: 8px;
+}
+
+.rank-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  border-radius: 7px;
+  padding: 0.55rem 0.65rem;
+  background: #f8faf7;
+}
+
+.rank-item--out {
+  color: var(--muted);
+  background: #f1f3ef;
+}
+
+.rank-badge {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  font-weight: 900;
+}
+
+.rank-item--out .rank-badge {
+  background: var(--muted);
+}
+
+.player-name {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.matchup-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.matchup-preview {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px;
+  background: #f8faf7;
+}
+
+.matchup-preview span,
+.matchup-preview em {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .match-grid,
@@ -382,8 +501,57 @@ button[type='submit'] {
     grid-template-columns: 1fr;
   }
 
-  .panel-heading {
+  .topbar h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero-band {
+    min-height: 210px;
+  }
+
+  .hero-band h2 {
+    font-size: clamp(2.35rem, 12vw, 3.6rem);
+  }
+
+  .panel-heading,
+  .section-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .nav-tabs,
+  .admin-tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  .nav-tab {
+    flex: 1 1 94px;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .stat-card {
+    padding: 13px;
+  }
+
+  .stat-card strong {
+    font-size: 1.35rem;
+  }
+
+  .stat-card span {
+    min-height: 2.1em;
+  }
+}
+
+@media (max-width: 520px) {
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-groups {
+    grid-template-columns: 1fr;
   }
 }

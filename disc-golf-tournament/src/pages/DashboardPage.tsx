@@ -8,6 +8,7 @@ export function DashboardPage() {
   const payout = computePayout(data.players.length, data.buyInAmount);
   const completedGroupMatches = data.groups.flatMap((group) => group.matches).filter((match) => match.winnerId).length;
   const totalGroupMatches = data.groups.flatMap((group) => group.matches).length;
+  const groupProgress = totalGroupMatches === 0 ? 0 : Math.round((completedGroupMatches / totalGroupMatches) * 100);
   const champion = data.finalStageMatches.find((match) => match.id === 'final-final')?.winnerId ?? null;
 
   return (
@@ -16,7 +17,7 @@ export function DashboardPage() {
         <div>
           <p className="eyebrow">World Cup style tournament</p>
           <h2>{data.tournamentName}</h2>
-          <p>Group Stage to Knockout Stage to Final Four at North Park.</p>
+          <p>Track standings, matchups, brackets, and payouts for the North Park event.</p>
         </div>
         <div className="hero-metrics">
           <span>{data.players.length} Players</span>
@@ -31,6 +32,9 @@ export function DashboardPage() {
           <strong>
             {completedGroupMatches}/{totalGroupMatches}
           </strong>
+          <div className="progress-track" aria-label={`Group stage ${groupProgress}% complete`}>
+            <div className="progress-fill" style={{ width: `${groupProgress}%` }} />
+          </div>
         </article>
         <article className="stat-card">
           <span>Champion</span>
@@ -42,33 +46,31 @@ export function DashboardPage() {
         </article>
       </section>
 
-      <section className="content-grid content-grid--two">
+      <section className="section-heading">
+        <div>
+          <p className="eyebrow">Current Picture</p>
+          <h2>Group Standings</h2>
+        </div>
+        <span>Top 3 advance from each group</span>
+      </section>
+
+      <section className="dashboard-groups">
         {data.groups.map((group) => (
-          <article className="panel" key={group.id}>
+          <article className="group-summary-card" key={group.id}>
             <div className="panel-heading">
               <h3>{group.name}</h3>
-              <span>Top 3 advance</span>
+              <span>{group.matches.filter((match) => match.winnerId).length}/6 matches</span>
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Player</th>
-                  <th>Wins</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {computeGroupStandings(group).map((row) => (
-                  <tr key={row.playerId}>
-                    <td>{row.rank}</td>
-                    <td>{formatPlayer(getPlayer(data.players, row.playerId))}</td>
-                    <td>{row.wins}</td>
-                    <td>{row.totalScore}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="rank-list">
+              {computeGroupStandings(group).map((row) => (
+                <div className={row.rank === 4 ? 'rank-item rank-item--out' : 'rank-item'} key={row.playerId}>
+                  <span className="rank-badge">{row.rank}</span>
+                  <span className="player-name">{formatPlayer(getPlayer(data.players, row.playerId))}</span>
+                  <span>{row.wins}W</span>
+                  <span>{row.totalScore}</span>
+                </div>
+              ))}
+            </div>
           </article>
         ))}
       </section>
@@ -78,11 +80,14 @@ export function DashboardPage() {
           <h3>Next Knockout Entrants</h3>
           <span>Resolved from current standings</span>
         </div>
-        <div className="pill-list">
+        <div className="matchup-preview-grid">
           {data.knockoutMatches.slice(0, 4).map((match) => (
-            <span className="pill" key={match.id}>
-              {participantLabel(match.participant1, data)} vs {participantLabel(match.participant2, data)}
-            </span>
+            <article className="matchup-preview" key={match.id}>
+              <span>Round 1</span>
+              <strong>{participantLabel(match.participant1, data)}</strong>
+              <em>vs</em>
+              <strong>{participantLabel(match.participant2, data)}</strong>
+            </article>
           ))}
         </div>
       </section>
