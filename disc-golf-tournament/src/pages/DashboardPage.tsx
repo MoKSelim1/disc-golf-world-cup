@@ -10,6 +10,7 @@ export function DashboardPage() {
   const totalGroupMatches = data.groups.flatMap((group) => group.matches).length;
   const groupProgress = totalGroupMatches === 0 ? 0 : Math.round((completedGroupMatches / totalGroupMatches) * 100);
   const champion = data.finalStageMatches.find((match) => match.id === 'final-final')?.winnerId ?? null;
+  const championPlayer = getPlayer(data.players, champion);
 
   return (
     <div className="page-stack">
@@ -37,8 +38,9 @@ export function DashboardPage() {
           </div>
         </article>
         <article className="stat-card">
-          <span>Champion</span>
-          <strong>{formatPlayer(getPlayer(data.players, champion))}</strong>
+          <span>{championPlayer ? 'Champion' : 'Advancing Spots'}</span>
+          <strong>{championPlayer ? formatPlayer(championPlayer) : data.numGroups * 3}</strong>
+          {!championPlayer && <small>Top 3 from each group</small>}
         </article>
         <article className="stat-card">
           <span>Last Updated</span>

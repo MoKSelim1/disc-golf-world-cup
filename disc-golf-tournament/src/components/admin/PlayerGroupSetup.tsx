@@ -30,7 +30,7 @@ export function PlayerGroupSetup() {
                       />
                     </label>
                     <label>
-                      Country
+                      Country or 2-letter code
                       <input
                         onChange={(event) =>
                           dispatch({ type: 'UPDATE_PLAYER', player: { ...player, country: event.target.value } })

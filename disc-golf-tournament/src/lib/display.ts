@@ -1,4 +1,5 @@
 import type { KnockoutMatch, ParticipantRef, Player, PlayerId, TournamentData } from '../types/tournament';
+import { countryFlag } from './countries';
 import { computeGroupStandings } from './groupStandings';
 
 export function getPlayer(players: Player[], playerId: PlayerId | null | undefined): Player | null {
@@ -8,9 +9,9 @@ export function getPlayer(players: Player[], playerId: PlayerId | null | undefin
 
 export function formatPlayer(player: Player | null): string {
   if (!player) return 'TBD';
-  return player.country && player.country !== 'TBD'
-    ? `${player.name} (${player.country})`
-    : player.name;
+  const flag = countryFlag(player.country);
+  if (flag) return `${flag} ${player.name}`;
+  return player.country && player.country !== 'TBD' ? `${player.name} (${player.country})` : player.name;
 }
 
 function groupSeedPlayer(data: TournamentData, groupId: string, seed: 1 | 2 | 3): Player | null {

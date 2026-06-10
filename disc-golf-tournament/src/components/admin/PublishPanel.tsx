@@ -29,6 +29,10 @@ export function PublishPanel() {
       setStatus('Enter a GitHub token before publishing.');
       return;
     }
+    if (!owner.trim() || !repo.trim() || !branch.trim() || !path.trim()) {
+      setStatus('Owner, repo, branch, and data path are required.');
+      return;
+    }
 
     setBusy(true);
     setStatus('Publishing...');
@@ -57,6 +61,9 @@ export function PublishPanel() {
         <h2>Publish</h2>
         <span>{hasUnpublishedChanges ? 'Unpublished changes' : 'No unpublished changes'}</span>
       </div>
+      <p className="panel-note">
+        Token is stored only for this browser session. Publish updates the JSON file on the selected branch.
+      </p>
       <div className="publish-grid">
         <label>
           GitHub token
