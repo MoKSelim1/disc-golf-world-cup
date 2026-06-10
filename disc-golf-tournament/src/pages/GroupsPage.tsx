@@ -12,7 +12,7 @@ export function GroupsPage() {
         <section className="panel" key={group.id}>
           <div className="panel-heading">
             <h2>{group.name}</h2>
-            <span>Short pads, three weeks</span>
+            <span>Short pads, labeled matchup slots can be played in any order</span>
           </div>
           <div className="content-grid content-grid--two">
             <div>

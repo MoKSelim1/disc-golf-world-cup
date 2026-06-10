@@ -45,6 +45,8 @@ Transcription of the uploaded `WorldCupDiscGolfTournament.docx` (by Enrique Vazq
 > - Week 2: P1 vs P3, P2 vs P4
 > - Week 3: P1 vs P4, P2 vs P3
 >
+> Note: Week labels are matchup labels only; group-stage matches may be played in any order.
+>
 > **[Knockout Stage]** (example given for 4 groups A–D)
 > - All knockout matches on the same card/event ("pressure"), short pads at North Park.
 > - Week 1 (Round 1):
@@ -107,8 +109,9 @@ Transcription of the uploaded `WorldCupDiscGolfTournament.docx` (by Enrique Vazq
 - `G` = number of groups, each group has exactly 4 players. **G must be even and ≥ 2**
   (validate on setup; recommend G be a power of 2 — 2, 4, 8 — so the Final Stage forms
   a clean single-elimination bracket; for the actual event G = 4).
-- **Group stage**: fixed 3-week round robin per group (schedule above). Standings sort
-  by `(wins desc, totalAggregateScore asc)`. Ranks 1-4 derived from this sort.
+- **Group stage**: fixed 6-match round robin per group (schedule labels above).
+  Matches may be completed in any order. Standings sort by
+  `(wins desc, totalAggregateScore asc)`. Ranks 1-4 derived from this sort.
 
 ### 3.1 Group schedule generation (players P1..P4 in seed order)
 ```
@@ -334,7 +337,7 @@ AI-Playground/
         │       └── PublishPanel.tsx
         └── pages/
             ├── DashboardPage.tsx        # overview + standings/payout snippets
-            ├── GroupsPage.tsx           # group standings + 3-week schedule
+            ├── GroupsPage.tsx           # group standings + labeled matchup schedule
             ├── KnockoutPage.tsx         # knockout Round 1/2 bracket
             ├── FinalStagePage.tsx       # final stage / "Final Four" bracket
             ├── PayoutPage.tsx           # prize pool breakdown

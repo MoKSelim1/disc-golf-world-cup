@@ -9,7 +9,7 @@ export function GroupScoreEntry() {
     <section className="panel">
       <div className="panel-heading">
         <h2>Group Scores</h2>
-        <span>Lower score wins</span>
+        <span>Lower score wins; enter matches in any order</span>
       </div>
       <div className="admin-match-list">
         {data.groups.flatMap((group) =>

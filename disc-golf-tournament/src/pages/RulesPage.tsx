@@ -13,7 +13,8 @@ export function RulesPage() {
         <p>$30 buy-in paid via PayPal to enriquevazquez2001@gmail.com.</p>
         <p>Each player represents a selected country or team name.</p>
         <h3>Group Stage</h3>
-        <p>Groups of four play a three-week round robin at North Park from short pads.</p>
+        <p>Groups of four play a round robin at North Park from short pads.</p>
+        <p>Week labels identify the planned matchups only; group-stage matches may be played in any order.</p>
         <p>Standings are ordered by match wins, then lower aggregate score.</p>
         <p>Group winners receive a bye into Knockout Round 2. Second and third place advance to Knockout Round 1.</p>
         <h3>Knockout Stage</h3>
