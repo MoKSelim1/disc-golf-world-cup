@@ -17,5 +17,5 @@ cd disc-golf-tournament
 npm run build
 ```
 
-The admin passphrase is defined in `src/components/admin/PassphraseGate.tsx`.
-The default v1 passphrase is `northpark`.
+Access passphrases are client-side convenience gates for v1 and are defined in the app source.
+Use a fine-grained GitHub token with minimal repository contents permissions when publishing tournament data.

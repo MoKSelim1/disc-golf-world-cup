@@ -10,7 +10,7 @@ export function RulesPage() {
       </div>
       <article className="panel prose">
         <h3>Entry</h3>
-        <p>$30 buy-in paid via PayPal to enriquevazquez2001@gmail.com.</p>
+        <p>$30 buy-in. Contact the tournament manager for payment and event details.</p>
         <p>Each player represents a selected country or team name.</p>
         <h3>Group Stage</h3>
         <p>Groups of four play a round robin at North Park from short pads.</p>

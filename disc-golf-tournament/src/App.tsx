@@ -8,6 +8,7 @@ import { FinalStagePage } from './pages/FinalStagePage';
 import { PayoutPage } from './pages/PayoutPage';
 import { RulesPage } from './pages/RulesPage';
 import { AdminPage } from './pages/AdminPage';
+import { SiteGate } from './components/auth/SiteGate';
 
 export type ViewName = 'dashboard' | 'groups' | 'knockout' | 'finals' | 'payout' | 'rules' | 'admin';
 
@@ -36,8 +37,10 @@ export default function App() {
   const status = useTournamentData();
 
   return (
-    <Layout activeView={view} onViewChange={setView}>
-      {status === 'loading' ? <div className="panel">Loading tournament...</div> : <CurrentView view={view} />}
-    </Layout>
+    <SiteGate>
+      <Layout activeView={view} onViewChange={setView}>
+        {status === 'loading' ? <div className="panel">Loading tournament...</div> : <CurrentView view={view} />}
+      </Layout>
+    </SiteGate>
   );
 }

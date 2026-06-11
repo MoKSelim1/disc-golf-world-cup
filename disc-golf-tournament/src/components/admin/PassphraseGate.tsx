@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTournament } from '../../context/TournamentContext';
 
-export const ADMIN_PASSPHRASE = 'northpark';
+export const ADMIN_PASSPHRASE = 'manager2026';
 
 export function PassphraseGate() {
   const { setIsAdmin } = useTournament();

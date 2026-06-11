@@ -29,6 +29,39 @@ body {
   color: var(--ink);
 }
 
+.access-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+}
+
+.access-panel {
+  display: grid;
+  gap: 18px;
+  width: min(100%, 500px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(24px, 6vw, 42px);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.access-panel h1,
+.access-panel p {
+  margin: 0;
+}
+
+.access-panel h1 {
+  font-size: clamp(2.4rem, 8vw, 4.7rem);
+  line-height: 0.95;
+}
+
+.access-panel form {
+  display: grid;
+  gap: 12px;
+}
+
 button,
 input {
   font: inherit;
