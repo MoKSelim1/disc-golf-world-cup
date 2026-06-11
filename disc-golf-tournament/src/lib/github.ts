@@ -1,6 +1,8 @@
 import type { TournamentData } from '../types/tournament';
 
 const API_BASE = 'https://api.github.com';
+const TOKEN_PERMISSION_HINT =
+  'Check that your fine-grained token is for MoKSelim1/disc-golf-world-cup and has Contents: Read and write permission.';
 
 function encodeBase64Utf8(value: string): string {
   return btoa(unescape(encodeURIComponent(value)));
@@ -25,7 +27,11 @@ export async function publishTournamentData(opts: {
     `${API_BASE}/repos/${opts.owner}/${opts.repo}/contents/${opts.path}?ref=${opts.branch}`,
     { headers },
   );
-  if (!getRes.ok) throw new Error(`Failed to fetch current file (${getRes.status})`);
+  if (!getRes.ok) {
+    const body = await getRes.json().catch(() => ({}));
+    const hint = getRes.status === 403 ? ` ${TOKEN_PERMISSION_HINT}` : '';
+    throw new Error(`Failed to fetch current file (${getRes.status}): ${body.message ?? 'unknown error'}.${hint}`);
+  }
   const { sha } = await getRes.json();
 
   const content = encodeBase64Utf8(
@@ -45,7 +51,8 @@ export async function publishTournamentData(opts: {
 
   if (!putRes.ok) {
     const body = await putRes.json().catch(() => ({}));
-    throw new Error(`Publish failed (${putRes.status}): ${body.message ?? 'unknown error'}`);
+    const hint = putRes.status === 403 ? ` ${TOKEN_PERMISSION_HINT}` : '';
+    throw new Error(`Publish failed (${putRes.status}): ${body.message ?? 'unknown error'}.${hint}`);
   }
 
   const result = await putRes.json();
