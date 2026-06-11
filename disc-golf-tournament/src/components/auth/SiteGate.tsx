@@ -3,13 +3,32 @@ import { useEffect, useState, type ReactNode } from 'react';
 const SITE_ACCESS_KEY = 'disc_golf_world_cup_site_access';
 export const SITE_PASSPHRASE = 'worldcup2026';
 
+function getAccessFromHash(): string | null {
+  const hash = window.location.hash.replace(/^#/, '');
+  const params = new URLSearchParams(hash);
+  return params.get('access');
+}
+
+function unlockSession() {
+  sessionStorage.setItem(SITE_ACCESS_KEY, 'granted');
+}
+
 export function SiteGate({ children }: { children: ReactNode }) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setIsUnlocked(sessionStorage.getItem(SITE_ACCESS_KEY) === 'granted');
+    if (sessionStorage.getItem(SITE_ACCESS_KEY) === 'granted') {
+      setIsUnlocked(true);
+      return;
+    }
+
+    if (getAccessFromHash() === SITE_PASSPHRASE) {
+      unlockSession();
+      setIsUnlocked(true);
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
   }, []);
 
   if (isUnlocked) return <>{children}</>;
@@ -24,7 +43,7 @@ export function SiteGate({ children }: { children: ReactNode }) {
           onSubmit={(event) => {
             event.preventDefault();
             if (value === SITE_PASSPHRASE) {
-              sessionStorage.setItem(SITE_ACCESS_KEY, 'granted');
+              unlockSession();
               setIsUnlocked(true);
               setError('');
             } else {
