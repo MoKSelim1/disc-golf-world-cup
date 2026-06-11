@@ -1,12 +1,17 @@
-import type { Group, TournamentData } from '../types/tournament';
+import type { Group, Player, PlayerId, TournamentData, TournamentFormat } from '../types/tournament';
 import { generateGroupSchedule, scoreWinner } from './groupStandings';
+import { getSeedFromGroup } from './groupStandings';
 import { getKnockoutRoundTwoWinners, recomputeKnockoutMatches } from './knockoutBracket';
 import { recomputeFinalStageMatches } from './finalStage';
 
 export function createGroups(playerIds: string[], numGroups: number): Group[] {
-  return Array.from({ length: numGroups }, (_, index) => {
+  const groups = Array.from({ length: numGroups }, () => [] as PlayerId[]);
+  playerIds.forEach((playerId, index) => {
+    groups[index % numGroups].push(playerId);
+  });
+
+  return groups.map((groupPlayerIds, index) => {
     const id = `group-${index + 1}`;
-    const groupPlayerIds = playerIds.slice(index * 4, index * 4 + 4);
     return {
       id,
       name: `Group ${String.fromCharCode(65 + index)}`,
@@ -14,6 +19,22 @@ export function createGroups(playerIds: string[], numGroups: number): Group[] {
       matches: generateGroupSchedule(id, groupPlayerIds),
     };
   });
+}
+
+export function tournamentFormat(data: TournamentData): TournamentFormat {
+  return data.format ?? 'worldCupTopThree';
+}
+
+export function advancingPerGroup(data: TournamentData): number {
+  return tournamentFormat(data) === 'groupTopTwoFinal' ? 2 : 3;
+}
+
+function groupSeedEntrants(groups: Group[], seedCount: number): PlayerId[] {
+  return groups.flatMap((group) =>
+    Array.from({ length: seedCount }, (_, index) => getSeedFromGroup(group, index + 1)).filter(
+      (playerId): playerId is PlayerId => Boolean(playerId),
+    ),
+  );
 }
 
 export function recomputeTournament(data: TournamentData): TournamentData {
@@ -25,16 +46,21 @@ export function recomputeTournament(data: TournamentData): TournamentData {
     })),
   }));
 
-  const knockoutMatches = recomputeKnockoutMatches(groups, data.knockoutMatches);
-  const finalEntrants = getKnockoutRoundTwoWinners(knockoutMatches);
+  const format = tournamentFormat(data);
+  const knockoutMatches =
+    format === 'worldCupTopThree' ? recomputeKnockoutMatches(groups, data.knockoutMatches) : [];
+  const finalEntrants =
+    format === 'worldCupTopThree'
+      ? getKnockoutRoundTwoWinners(knockoutMatches)
+      : groupSeedEntrants(groups, 2);
   const finalStageMatches = recomputeFinalStageMatches(finalEntrants, data.finalStageMatches);
 
-  return { ...data, groups, knockoutMatches, finalStageMatches };
+  return { ...data, format, groups, knockoutMatches, finalStageMatches };
 }
 
 export function regenerateStructure(data: TournamentData, numGroups: number): TournamentData {
-  if (numGroups < 2 || numGroups % 2 !== 0) return data;
-  const playerIds = data.players.slice(0, numGroups * 4).map((player) => player.id);
+  if (numGroups < 1) return data;
+  const playerIds = data.players.map((player) => player.id);
   const groups = createGroups(playerIds, numGroups);
   return recomputeTournament({
     ...data,
@@ -42,5 +68,46 @@ export function regenerateStructure(data: TournamentData, numGroups: number): To
     groups,
     knockoutMatches: [],
     finalStageMatches: [],
+  });
+}
+
+export function recommendGroupCount(playerCount: number): number {
+  if (playerCount <= 5) return 1;
+  if (playerCount <= 10) return 2;
+  if (playerCount <= 24) return 4;
+  return 8;
+}
+
+export function createPlayers(playerCount: number): Player[] {
+  return Array.from({ length: playerCount }, (_, index) => ({
+    id: `p${index + 1}`,
+    name: `Player ${index + 1}`,
+    country: 'TBD',
+  }));
+}
+
+export function createTournamentData(opts: {
+  id: string;
+  name: string;
+  buyInAmount: number;
+  playerCount: number;
+}): TournamentData {
+  const players = createPlayers(opts.playerCount);
+  const numGroups = recommendGroupCount(opts.playerCount);
+  return recomputeTournament({
+    schemaVersion: 2,
+    tournamentId: opts.id,
+    tournamentName: opts.name,
+    format: 'groupTopTwoFinal',
+    buyInAmount: opts.buyInAmount,
+    numGroups,
+    players,
+    groups: createGroups(
+      players.map((player) => player.id),
+      numGroups,
+    ),
+    knockoutMatches: [],
+    finalStageMatches: [],
+    lastUpdated: new Date().toISOString(),
   });
 }

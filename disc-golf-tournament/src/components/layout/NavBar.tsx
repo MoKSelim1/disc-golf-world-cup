@@ -1,4 +1,5 @@
 import type { ViewName } from '../../App';
+import { TournamentSwitcher } from './TournamentSwitcher';
 
 const views: Array<{ id: ViewName; label: string }> = [
   { id: 'dashboard', label: 'Dashboard' },
@@ -13,9 +14,12 @@ const views: Array<{ id: ViewName; label: string }> = [
 export function NavBar({ activeView, onViewChange }: { activeView: ViewName; onViewChange: (view: ViewName) => void }) {
   return (
     <header className="topbar">
-      <div>
-        <p className="eyebrow">North Park</p>
-        <h1>Disc Golf World Cup</h1>
+      <div className="topbar__main">
+        <div>
+          <p className="eyebrow">North Park</p>
+          <h1>Disc Golf World Cup</h1>
+        </div>
+        <TournamentSwitcher />
       </div>
       <nav className="nav-tabs" aria-label="Main navigation">
         {views.map((view) => (

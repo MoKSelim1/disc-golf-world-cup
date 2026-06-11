@@ -1,16 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useTournament } from '../../context/TournamentContext';
-import { publishTournamentData } from '../../lib/github';
+import { publishTournamentBundle } from '../../lib/github';
+import {
+  publicPathToRepoPath,
+  repoPathToPublicPath,
+  summarizeTournament,
+  TOURNAMENT_INDEX_PUBLIC_PATH,
+  updateIndexSummary,
+} from '../../lib/tournamentCatalog';
 
 const TOKEN_KEY = 'disc_golf_world_cup_gh_pat';
 
 export function PublishPanel() {
-  const { data, hasUnpublishedChanges, markPublished } = useTournament();
+  const {
+    activeTournament,
+    data,
+    dispatch,
+    hasUnpublishedChanges,
+    markPublished,
+    replaceTournamentIndex,
+    tournamentIndex,
+  } = useTournament();
   const [token, setToken] = useState('');
   const [owner, setOwner] = useState('MoKSelim1');
   const [repo, setRepo] = useState('disc-golf-world-cup');
   const [branch, setBranch] = useState('main');
-  const [path, setPath] = useState('disc-golf-tournament/public/data/tournament.json');
+  const [path, setPath] = useState(publicPathToRepoPath(activeTournament.dataPath));
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
   const groupMatches = data.groups.flatMap((group) => group.matches);
@@ -21,6 +36,10 @@ export function PublishPanel() {
   useEffect(() => {
     setToken(sessionStorage.getItem(TOKEN_KEY) ?? '');
   }, []);
+
+  useEffect(() => {
+    setPath(publicPathToRepoPath(activeTournament.dataPath));
+  }, [activeTournament.dataPath]);
 
   function updateToken(value: string) {
     setToken(value);
@@ -37,19 +56,32 @@ export function PublishPanel() {
       setStatus('Owner, repo, branch, and data path are required.');
       return;
     }
+    const publicDataPath = repoPathToPublicPath(path);
+    if (!publicDataPath) {
+      setStatus('Data path must stay under disc-golf-tournament/public/.');
+      return;
+    }
 
     setBusy(true);
     setStatus('Publishing...');
     try {
-      const result = await publishTournamentData({
+      const publishedAt = new Date().toISOString();
+      const updatedData = { ...data, lastUpdated: publishedAt };
+      const updatedSummary = summarizeTournament(updatedData, publicDataPath, activeTournament.status);
+      const updatedIndex = updateIndexSummary(tournamentIndex, updatedSummary, publishedAt);
+      const result = await publishTournamentBundle({
         owner,
         repo,
         branch,
-        path,
+        tournamentPath: path,
+        indexPath: publicPathToRepoPath(TOURNAMENT_INDEX_PUBLIC_PATH),
         token,
-        data,
-        commitMessage: 'Update tournament data',
+        data: updatedData,
+        index: updatedIndex,
+        commitMessage: `Update ${data.tournamentName} data`,
       });
+      replaceTournamentIndex(updatedIndex, updatedSummary);
+      dispatch({ type: 'SET_INITIAL_DATA', data: updatedData });
       markPublished();
       setStatus(result.commitUrl ? `Published: ${result.commitUrl}` : 'Published. Pages will redeploy soon.');
     } catch (error) {
@@ -66,7 +98,7 @@ export function PublishPanel() {
         <span>{hasUnpublishedChanges ? 'Unpublished changes' : 'No unpublished changes'}</span>
       </div>
       <p className="panel-note">
-        Token is stored only for this browser session. Publish updates the JSON file on the selected branch.
+        Token is stored only for this browser session. Publish updates this tournament JSON and the tournament index on the selected branch.
       </p>
       <div className="readiness-grid">
         <span>Groups: {completedGroupMatches}/{groupMatches.length}</span>

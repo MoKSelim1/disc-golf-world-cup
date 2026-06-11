@@ -63,7 +63,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -77,6 +78,15 @@ input {
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 0.7rem 0.75rem;
+  color: var(--ink);
+  background: #fff;
+}
+
+select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.65rem 2rem 0.65rem 0.75rem;
   color: var(--ink);
   background: #fff;
 }
@@ -120,6 +130,13 @@ th {
   margin-bottom: 24px;
 }
 
+.topbar__main {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
 .topbar h1,
 .hero-band h2,
 .panel-heading h2 {
@@ -129,6 +146,18 @@ th {
 .topbar h1 {
   font-size: clamp(2rem, 6vw, 4.4rem);
   line-height: 0.95;
+}
+
+.tournament-switcher {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 320px);
+}
+
+.tournament-switcher span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
 .eyebrow {
@@ -524,15 +553,66 @@ button[type='submit'],
 }
 
 .panel > button,
+.subpanel button,
 button[type='submit'] {
   border-radius: 6px;
   padding: 0.78rem 1rem;
   font-weight: 900;
 }
 
-.panel > button:disabled {
+.panel > button:disabled,
+.subpanel button:disabled {
   cursor: wait;
   opacity: 0.7;
+}
+
+.subpanel button {
+  background: var(--green);
+  color: white;
+}
+
+.create-tournament-form,
+.tournament-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.format-note,
+.tournament-row {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.75rem;
+  background: #f8faf7;
+}
+
+.format-note {
+  display: grid;
+  gap: 4px;
+}
+
+.format-note span,
+.tournament-row span {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.tournament-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tournament-row > div {
+  display: grid;
+  gap: 3px;
+}
+
+.tournament-row--active {
+  border-color: rgba(37, 107, 79, 0.55);
+  background: #eef7f0;
 }
 
 .admin-gate {
@@ -565,6 +645,15 @@ button[type='submit'] {
 
   .topbar h1 {
     font-size: 2.1rem;
+  }
+
+  .topbar__main {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tournament-switcher {
+    width: 100%;
   }
 
   .hero-band {

@@ -1,45 +1,70 @@
 import { useEffect, useState } from 'react';
-import type { TournamentData } from '../types/tournament';
 import { seedTournament } from '../data/seedTournament';
 import { useTournament } from '../context/TournamentContext';
+import {
+  buildLegacyIndex,
+  isTournamentData,
+  isTournamentIndex,
+  LEGACY_TOURNAMENT_PUBLIC_PATH,
+  TOURNAMENT_INDEX_PUBLIC_PATH,
+} from '../lib/tournamentCatalog';
 
-function isTournamentData(value: unknown): value is TournamentData {
-  return Boolean(
-    value &&
-      typeof value === 'object' &&
-      'players' in value &&
-      'groups' in value &&
-      'tournamentName' in value,
-  );
+async function fetchJson(path: string): Promise<unknown> {
+  const response = await fetch(path, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
 }
 
 export function useTournamentData() {
-  const { dispatch } = useTournament();
+  const { setInitialTournament } = useTournament();
   const [status, setStatus] = useState<'loading' | 'ready' | 'fallback'>('loading');
 
   useEffect(() => {
     let cancelled = false;
 
-    fetch('data/tournament.json', { cache: 'no-store' })
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
-      })
-      .then((json) => {
+    async function load() {
+      try {
+        const indexJson = await fetchJson(TOURNAMENT_INDEX_PUBLIC_PATH);
+        if (!isTournamentIndex(indexJson)) throw new Error('Invalid tournament index');
+
+        const requestedId = new URLSearchParams(window.location.search).get('tournament');
+        const summary =
+          indexJson.tournaments.find((item) => item.id === requestedId) ??
+          indexJson.tournaments.find((item) => item.id === indexJson.activeTournamentId) ??
+          indexJson.tournaments[0];
+        if (!summary) throw new Error('Tournament index is empty');
+
+        const dataJson = await fetchJson(summary.dataPath);
+        if (!isTournamentData(dataJson)) throw new Error('Invalid tournament data');
         if (cancelled) return;
-        dispatch({ type: 'SET_INITIAL_DATA', data: isTournamentData(json) ? json : seedTournament });
-        setStatus(isTournamentData(json) ? 'ready' : 'fallback');
-      })
-      .catch(() => {
-        if (cancelled) return;
-        dispatch({ type: 'SET_INITIAL_DATA', data: seedTournament });
-        setStatus('fallback');
-      });
+
+        setInitialTournament(indexJson, { ...dataJson, tournamentId: summary.id }, summary);
+        setStatus('ready');
+      } catch {
+        try {
+          const legacyJson = await fetchJson(LEGACY_TOURNAMENT_PUBLIC_PATH);
+          const data = isTournamentData(legacyJson) ? legacyJson : seedTournament;
+          if (cancelled) return;
+          setInitialTournament(buildLegacyIndex(data), data, buildLegacyIndex(data).tournaments[0]);
+          setStatus(isTournamentData(legacyJson) ? 'ready' : 'fallback');
+        } catch {
+          if (cancelled) return;
+          setInitialTournament(buildLegacyIndex(seedTournament), seedTournament, buildLegacyIndex(seedTournament).tournaments[0]);
+          setStatus('fallback');
+        }
+      }
+    }
+
+    load().catch(() => {
+      if (cancelled) return;
+      setInitialTournament(buildLegacyIndex(seedTournament), seedTournament, buildLegacyIndex(seedTournament).tournaments[0]);
+      setStatus('fallback');
+    });
 
     return () => {
       cancelled = true;
     };
-  }, [dispatch]);
+  }, [setInitialTournament]);
 
   return status;
 }

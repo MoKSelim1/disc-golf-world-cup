@@ -1,7 +1,23 @@
 import { createContext, useCallback, useContext, useMemo, useReducer, useState, type Dispatch, type ReactNode } from 'react';
-import type { FinalStageMatch, GroupMatch, KnockoutMatch, Player, TournamentData } from '../types/tournament';
+import type {
+  FinalStageMatch,
+  GroupMatch,
+  KnockoutMatch,
+  Player,
+  TournamentData,
+  TournamentIndex,
+  TournamentSummary,
+} from '../types/tournament';
 import { seedTournament } from '../data/seedTournament';
-import { recomputeTournament } from '../lib/tournament';
+import { createTournamentData, recomputeTournament } from '../lib/tournament';
+import {
+  buildLegacyIndex,
+  isTournamentData,
+  sanitizeTournamentId,
+  summarizeTournament,
+  tournamentDataPath,
+  updateIndexSummary,
+} from '../lib/tournamentCatalog';
 
 type TournamentAction =
   | { type: 'SET_INITIAL_DATA'; data: TournamentData }
@@ -12,9 +28,15 @@ type TournamentAction =
 
 interface TournamentContextValue {
   data: TournamentData;
+  tournamentIndex: TournamentIndex;
+  activeTournament: TournamentSummary;
   isAdmin: boolean;
   hasUnpublishedChanges: boolean;
   setIsAdmin: (value: boolean) => void;
+  setInitialTournament: (index: TournamentIndex, data: TournamentData, activeTournament: TournamentSummary) => void;
+  selectTournament: (id: string) => Promise<void>;
+  createTournament: (opts: { name: string; playerCount: number; buyInAmount: number }) => void;
+  replaceTournamentIndex: (index: TournamentIndex, activeTournament: TournamentSummary) => void;
   markPublished: () => void;
   dispatch: Dispatch<TournamentAction>;
 }
@@ -68,6 +90,8 @@ function reducer(state: TournamentData, action: TournamentAction): TournamentDat
 
 export function TournamentProvider({ children }: { children: ReactNode }) {
   const [data, baseDispatch] = useReducer(reducer, seedTournament);
+  const [tournamentIndex, setTournamentIndex] = useState<TournamentIndex>(() => buildLegacyIndex(seedTournament));
+  const [activeTournament, setActiveTournament] = useState<TournamentSummary>(() => buildLegacyIndex(seedTournament).tournaments[0]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [hasUnpublishedChanges, setHasUnpublishedChanges] = useState(false);
 
@@ -76,16 +100,96 @@ export function TournamentProvider({ children }: { children: ReactNode }) {
     if (action.type !== 'SET_INITIAL_DATA') setHasUnpublishedChanges(true);
   }, []);
 
+  const setInitialTournament = useCallback(
+    (index: TournamentIndex, incomingData: TournamentData, incomingActiveTournament: TournamentSummary) => {
+      setTournamentIndex(index);
+      setActiveTournament(incomingActiveTournament);
+      baseDispatch({ type: 'SET_INITIAL_DATA', data: { ...incomingData, tournamentId: incomingActiveTournament.id } });
+      setHasUnpublishedChanges(false);
+    },
+    [],
+  );
+
+  const selectTournament = useCallback(
+    async (id: string) => {
+      const summary = tournamentIndex.tournaments.find((item) => item.id === id);
+      if (!summary) return;
+
+      const response = await fetch(summary.dataPath, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Failed to load tournament (${response.status}).`);
+      const json = await response.json();
+      if (!isTournamentData(json)) throw new Error('Tournament data file is invalid.');
+
+      setActiveTournament(summary);
+      baseDispatch({ type: 'SET_INITIAL_DATA', data: { ...json, tournamentId: summary.id } });
+      setHasUnpublishedChanges(false);
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('tournament', summary.id);
+      window.history.replaceState({}, '', url);
+    },
+    [tournamentIndex],
+  );
+
+  const createTournament = useCallback(
+    (opts: { name: string; playerCount: number; buyInAmount: number }) => {
+      const baseId = sanitizeTournamentId(opts.name);
+      const existingIds = new Set(tournamentIndex.tournaments.map((item) => item.id));
+      let id = baseId;
+      let suffix = 2;
+      while (existingIds.has(id)) {
+        id = `${baseId}-${suffix}`;
+        suffix += 1;
+      }
+
+      const newData = createTournamentData({ id, ...opts });
+      const summary = summarizeTournament(newData, tournamentDataPath(id), 'upcoming');
+      const nextIndex = updateIndexSummary(tournamentIndex, summary);
+
+      setTournamentIndex(nextIndex);
+      setActiveTournament(summary);
+      baseDispatch({ type: 'SET_INITIAL_DATA', data: newData });
+      setHasUnpublishedChanges(true);
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('tournament', id);
+      window.history.replaceState({}, '', url);
+    },
+    [tournamentIndex],
+  );
+
+  const replaceTournamentIndex = useCallback((index: TournamentIndex, incomingActiveTournament: TournamentSummary) => {
+    setTournamentIndex(index);
+    setActiveTournament(incomingActiveTournament);
+  }, []);
+
   const value = useMemo(
     () => ({
       data,
+      tournamentIndex,
+      activeTournament,
       isAdmin,
       hasUnpublishedChanges,
       setIsAdmin,
+      setInitialTournament,
+      selectTournament,
+      createTournament,
+      replaceTournamentIndex,
       markPublished: () => setHasUnpublishedChanges(false),
       dispatch,
     }),
-    [data, hasUnpublishedChanges, isAdmin],
+    [
+      activeTournament,
+      createTournament,
+      data,
+      dispatch,
+      hasUnpublishedChanges,
+      isAdmin,
+      replaceTournamentIndex,
+      selectTournament,
+      setInitialTournament,
+      tournamentIndex,
+    ],
   );
 
   return <TournamentContext.Provider value={value}>{children}</TournamentContext.Provider>;

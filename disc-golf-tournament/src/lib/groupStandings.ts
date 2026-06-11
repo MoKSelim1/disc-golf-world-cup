@@ -12,25 +12,37 @@ export function scoreWinner(
 }
 
 export function generateGroupSchedule(groupId: string, playerIds: PlayerId[]): GroupMatch[] {
-  const [p1, p2, p3, p4] = playerIds;
-  const pairings: Array<[1 | 2 | 3, PlayerId, PlayerId]> = [
-    [1, p1, p2],
-    [1, p3, p4],
-    [2, p1, p3],
-    [2, p2, p4],
-    [3, p1, p4],
-    [3, p2, p3],
-  ];
+  const bye = '__bye__';
+  const rotation = playerIds.length % 2 === 0 ? [...playerIds] : [...playerIds, bye];
+  const rounds = rotation.length - 1;
+  const matches: GroupMatch[] = [];
 
-  return pairings.map(([week, player1Id, player2Id], index) => ({
-    id: `${groupId}-w${week}-m${(index % 2) + 1}`,
-    week,
-    player1Id,
-    player2Id,
-    player1Score: null,
-    player2Score: null,
-    winnerId: null,
-  }));
+  for (let round = 0; round < rounds; round += 1) {
+    let matchInRound = 1;
+    for (let index = 0; index < rotation.length / 2; index += 1) {
+      const player1Id = rotation[index];
+      const player2Id = rotation[rotation.length - 1 - index];
+      if (player1Id !== bye && player2Id !== bye) {
+        matches.push({
+          id: `${groupId}-w${round + 1}-m${matchInRound}`,
+          week: round + 1,
+          player1Id,
+          player2Id,
+          player1Score: null,
+          player2Score: null,
+          winnerId: null,
+        });
+        matchInRound += 1;
+      }
+    }
+
+    const fixed = rotation[0];
+    const rotating = rotation.slice(1);
+    rotating.unshift(rotating.pop()!);
+    rotation.splice(0, rotation.length, fixed, ...rotating);
+  }
+
+  return matches;
 }
 
 export function computeGroupStandings(group: Group): GroupStandingRow[] {
@@ -67,10 +79,10 @@ export function computeGroupStandings(group: Group): GroupStandingRow[] {
       if (a.totalScore !== b.totalScore) return a.totalScore - b.totalScore;
       return group.playerIds.indexOf(a.playerId) - group.playerIds.indexOf(b.playerId);
     })
-    .map((row, index) => ({ ...row, rank: (index + 1) as 1 | 2 | 3 | 4 }));
+    .map((row, index) => ({ ...row, rank: index + 1 }));
 }
 
-export function getSeedFromGroup(group: Group, seed: 1 | 2 | 3): PlayerId | null {
+export function getSeedFromGroup(group: Group, seed: number): PlayerId | null {
   const row = computeGroupStandings(group).find((standing) => standing.rank === seed);
   return row?.playerId ?? null;
 }

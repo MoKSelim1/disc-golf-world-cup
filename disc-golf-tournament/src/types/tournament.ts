@@ -8,7 +8,7 @@ export interface Player {
 
 export interface GroupMatch {
   id: string;
-  week: 1 | 2 | 3;
+  week: number;
   player1Id: PlayerId;
   player2Id: PlayerId;
   player1Score: number | null;
@@ -28,11 +28,11 @@ export interface GroupStandingRow {
   wins: number;
   totalScore: number;
   played: number;
-  rank: 1 | 2 | 3 | 4;
+  rank: number;
 }
 
 export type ParticipantRef =
-  | { type: 'groupSeed'; groupId: string; seed: 2 | 3 }
+  | { type: 'groupSeed'; groupId: string; seed: number }
   | { type: 'groupWinner'; groupId: string }
   | { type: 'matchWinner'; matchId: string }
   | { type: 'player'; playerId: PlayerId }
@@ -78,14 +78,37 @@ export interface PayoutBreakdown {
   fourth: string;
 }
 
+export type TournamentFormat = 'worldCupTopThree' | 'groupTopTwoFinal';
+
 export interface TournamentData {
   schemaVersion: number;
+  tournamentId?: string;
   tournamentName: string;
+  format?: TournamentFormat;
   buyInAmount: number;
   numGroups: number;
   players: Player[];
   groups: Group[];
   knockoutMatches: KnockoutMatch[];
   finalStageMatches: FinalStageMatch[];
+  lastUpdated: string;
+}
+
+export type TournamentStatus = 'active' | 'upcoming' | 'complete';
+
+export interface TournamentSummary {
+  id: string;
+  name: string;
+  status: TournamentStatus;
+  dataPath: string;
+  format: TournamentFormat;
+  playerCount: number;
+  lastUpdated: string;
+}
+
+export interface TournamentIndex {
+  schemaVersion: number;
+  activeTournamentId: string;
+  tournaments: TournamentSummary[];
   lastUpdated: string;
 }

@@ -44,7 +44,7 @@ export function KnockoutBracket() {
 
 export function FinalBracket() {
   const { data } = useTournament();
-  const roundNames = ['quarterfinal', 'semifinal', 'final', 'thirdPlace'] as const;
+  const roundNames = ['roundOf16', 'quarterfinal', 'semifinal', 'final', 'thirdPlace'] as const;
 
   return (
     <div className="bracket-scroll">

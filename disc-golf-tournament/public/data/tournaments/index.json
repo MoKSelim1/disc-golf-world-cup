@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 2,
+  "activeTournamentId": "disc-golf-world-cup-2026",
+  "tournaments": [
+    {
+      "id": "disc-golf-world-cup-2026",
+      "name": "Disc Golf World Cup",
+      "status": "active",
+      "dataPath": "data/tournament.json",
+      "format": "worldCupTopThree",
+      "playerCount": 16,
+      "lastUpdated": "2026-06-11T16:47:42.784Z"
+    }
+  ],
+  "lastUpdated": "2026-06-11T16:47:42.784Z"
+}

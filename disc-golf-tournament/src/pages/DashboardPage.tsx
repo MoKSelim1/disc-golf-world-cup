@@ -2,10 +2,12 @@ import { useTournament } from '../context/TournamentContext';
 import { computeGroupStandings } from '../lib/groupStandings';
 import { computePayout } from '../lib/payout';
 import { formatPlayer, getPlayer, participantLabel } from '../lib/display';
+import { advancingPerGroup } from '../lib/tournament';
 
 export function DashboardPage() {
   const { data } = useTournament();
   const payout = computePayout(data.players.length, data.buyInAmount);
+  const advancingCount = advancingPerGroup(data);
   const completedGroupMatches = data.groups.flatMap((group) => group.matches).filter((match) => match.winnerId).length;
   const totalGroupMatches = data.groups.flatMap((group) => group.matches).length;
   const groupProgress = totalGroupMatches === 0 ? 0 : Math.round((completedGroupMatches / totalGroupMatches) * 100);
@@ -39,8 +41,8 @@ export function DashboardPage() {
         </article>
         <article className="stat-card">
           <span>{championPlayer ? 'Champion' : 'Advancing Spots'}</span>
-          <strong>{championPlayer ? formatPlayer(championPlayer) : data.numGroups * 3}</strong>
-          {!championPlayer && <small>Top 3 from each group</small>}
+          <strong>{championPlayer ? formatPlayer(championPlayer) : data.numGroups * advancingCount}</strong>
+          {!championPlayer && <small>Top {advancingCount} from each group</small>}
         </article>
         <article className="stat-card">
           <span>Last Updated</span>
@@ -53,7 +55,7 @@ export function DashboardPage() {
           <p className="eyebrow">Current Picture</p>
           <h2>Group Standings</h2>
         </div>
-        <span>Top 3 advance from each group</span>
+        <span>Top {advancingCount} advance from each group</span>
       </section>
 
       <section className="dashboard-groups">
@@ -65,7 +67,7 @@ export function DashboardPage() {
             </div>
             <div className="rank-list">
               {computeGroupStandings(group).map((row) => (
-                <div className={row.rank === 4 ? 'rank-item rank-item--out' : 'rank-item'} key={row.playerId}>
+                <div className={row.rank > advancingCount ? 'rank-item rank-item--out' : 'rank-item'} key={row.playerId}>
                   <span className="rank-badge">{row.rank}</span>
                   <span className="player-name">{formatPlayer(getPlayer(data.players, row.playerId))}</span>
                   <span>{row.wins}W</span>
@@ -77,22 +79,32 @@ export function DashboardPage() {
         ))}
       </section>
 
-      <section className="panel">
-        <div className="panel-heading">
-          <h3>Next Knockout Entrants</h3>
-          <span>Resolved from current standings</span>
-        </div>
-        <div className="matchup-preview-grid">
-          {data.knockoutMatches.slice(0, 4).map((match) => (
-            <article className="matchup-preview" key={match.id}>
-              <span>Round 1</span>
-              <strong>{participantLabel(match.participant1, data)}</strong>
-              <em>vs</em>
-              <strong>{participantLabel(match.participant2, data)}</strong>
-            </article>
-          ))}
-        </div>
-      </section>
+      {data.knockoutMatches.length > 0 ? (
+        <section className="panel">
+          <div className="panel-heading">
+            <h3>Next Knockout Entrants</h3>
+            <span>Resolved from current standings</span>
+          </div>
+          <div className="matchup-preview-grid">
+            {data.knockoutMatches.slice(0, 4).map((match) => (
+              <article className="matchup-preview" key={match.id}>
+                <span>Round 1</span>
+                <strong>{participantLabel(match.participant1, data)}</strong>
+                <em>vs</em>
+                <strong>{participantLabel(match.participant2, data)}</strong>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="panel">
+          <div className="panel-heading">
+            <h3>Final Bracket Entrants</h3>
+            <span>Resolved from top {advancingCount} in each group</span>
+          </div>
+          <p className="panel-note">This tournament sends qualifiers straight from group standings to the final bracket.</p>
+        </section>
+      )}
     </div>
   );
 }

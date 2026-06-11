@@ -6,10 +6,12 @@ import { GroupScoreEntry } from '../components/admin/GroupScoreEntry';
 import { KnockoutScoreEntry } from '../components/admin/KnockoutScoreEntry';
 import { FinalStageScoreEntry } from '../components/admin/FinalStageScoreEntry';
 import { PublishPanel } from '../components/admin/PublishPanel';
+import { TournamentManager } from '../components/admin/TournamentManager';
 
-type AdminTab = 'players' | 'groups' | 'knockout' | 'finals' | 'publish';
+type AdminTab = 'tournaments' | 'players' | 'groups' | 'knockout' | 'finals' | 'publish';
 
 const tabs: Array<{ id: AdminTab; label: string }> = [
+  { id: 'tournaments', label: 'Tournaments' },
   { id: 'players', label: 'Players' },
   { id: 'groups', label: 'Group Scores' },
   { id: 'knockout', label: 'Knockout' },
@@ -19,7 +21,7 @@ const tabs: Array<{ id: AdminTab; label: string }> = [
 
 export function AdminPage() {
   const { isAdmin } = useTournament();
-  const [tab, setTab] = useState<AdminTab>('players');
+  const [tab, setTab] = useState<AdminTab>('tournaments');
 
   if (!isAdmin) return <PassphraseGate />;
 
@@ -37,6 +39,7 @@ export function AdminPage() {
           </button>
         ))}
       </div>
+      {tab === 'tournaments' && <TournamentManager />}
       {tab === 'players' && <PlayerGroupSetup />}
       {tab === 'groups' && <GroupScoreEntry />}
       {tab === 'knockout' && <KnockoutScoreEntry />}

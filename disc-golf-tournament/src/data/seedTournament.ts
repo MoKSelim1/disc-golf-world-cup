@@ -9,7 +9,9 @@ const players = Array.from({ length: 16 }, (_, index) => ({
 
 const baseSeed: TournamentData = {
   schemaVersion: 1,
+  tournamentId: 'disc-golf-world-cup-2026',
   tournamentName: 'Disc Golf World Cup',
+  format: 'worldCupTopThree',
   buyInAmount: 30,
   numGroups: 4,
   players,

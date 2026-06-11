@@ -14,7 +14,7 @@ export function formatPlayer(player: Player | null): string {
   return player.country && player.country !== 'TBD' ? `${player.name} (${player.country})` : player.name;
 }
 
-function groupSeedPlayer(data: TournamentData, groupId: string, seed: 1 | 2 | 3): Player | null {
+function groupSeedPlayer(data: TournamentData, groupId: string, seed: number): Player | null {
   const group = data.groups.find((candidate) => candidate.id === groupId);
   if (!group) return null;
   const row = computeGroupStandings(group).find((standing) => standing.rank === seed);
