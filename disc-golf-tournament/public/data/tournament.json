@@ -77,7 +77,7 @@
     {
       "id": "p15",
       "name": "Bobby T",
-      "country": "TBD"
+      "country": "Dallas"
     },
     {
       "id": "p16",
@@ -555,5 +555,5 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-11T02:56:37.189Z"
+  "lastUpdated": "2026-06-11T03:00:13.339Z"
 }
