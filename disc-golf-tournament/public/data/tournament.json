@@ -62,7 +62,7 @@
     {
       "id": "p12",
       "name": "Ben Lord",
-      "country": "TBD"
+      "country": "California"
     },
     {
       "id": "p13",
@@ -555,5 +555,5 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-11T03:03:25.530Z"
+  "lastUpdated": "2026-06-11T03:07:06.632Z"
 }
