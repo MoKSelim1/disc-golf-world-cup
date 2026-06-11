@@ -8,7 +8,7 @@ export function PublishPanel() {
   const { data, hasUnpublishedChanges, markPublished } = useTournament();
   const [token, setToken] = useState('');
   const [owner, setOwner] = useState('MoKSelim1');
-  const [repo, setRepo] = useState('AI-Playground');
+  const [repo, setRepo] = useState('disc-golf-world-cup');
   const [branch, setBranch] = useState('main');
   const [path, setPath] = useState('disc-golf-tournament/public/data/tournament.json');
   const [status, setStatus] = useState('');
