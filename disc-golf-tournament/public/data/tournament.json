@@ -4,78 +4,556 @@
   "buyInAmount": 30,
   "numGroups": 4,
   "players": [
-    { "id": "p1", "name": "Player 1", "country": "TBD" },
-    { "id": "p2", "name": "Player 2", "country": "TBD" },
-    { "id": "p3", "name": "Player 3", "country": "TBD" },
-    { "id": "p4", "name": "Player 4", "country": "TBD" },
-    { "id": "p5", "name": "Player 5", "country": "TBD" },
-    { "id": "p6", "name": "Player 6", "country": "TBD" },
-    { "id": "p7", "name": "Player 7", "country": "TBD" },
-    { "id": "p8", "name": "Player 8", "country": "TBD" },
-    { "id": "p9", "name": "Player 9", "country": "TBD" },
-    { "id": "p10", "name": "Player 10", "country": "TBD" },
-    { "id": "p11", "name": "Player 11", "country": "TBD" },
-    { "id": "p12", "name": "Player 12", "country": "TBD" },
-    { "id": "p13", "name": "Player 13", "country": "TBD" },
-    { "id": "p14", "name": "Player 14", "country": "TBD" },
-    { "id": "p15", "name": "Player 15", "country": "TBD" },
-    { "id": "p16", "name": "Player 16", "country": "TBD" }
+    {
+      "id": "p1",
+      "name": "Mo Selim",
+      "country": "Egypt"
+    },
+    {
+      "id": "p2",
+      "name": "Player 2",
+      "country": "TBD"
+    },
+    {
+      "id": "p3",
+      "name": "Player 3",
+      "country": "TBD"
+    },
+    {
+      "id": "p4",
+      "name": "Player 4",
+      "country": "TBD"
+    },
+    {
+      "id": "p5",
+      "name": "Player 5",
+      "country": "TBD"
+    },
+    {
+      "id": "p6",
+      "name": "Player 6",
+      "country": "TBD"
+    },
+    {
+      "id": "p7",
+      "name": "Player 7",
+      "country": "TBD"
+    },
+    {
+      "id": "p8",
+      "name": "Player 8",
+      "country": "TBD"
+    },
+    {
+      "id": "p9",
+      "name": "Player 9",
+      "country": "TBD"
+    },
+    {
+      "id": "p10",
+      "name": "Player 10",
+      "country": "TBD"
+    },
+    {
+      "id": "p11",
+      "name": "Player 11",
+      "country": "TBD"
+    },
+    {
+      "id": "p12",
+      "name": "Player 12",
+      "country": "TBD"
+    },
+    {
+      "id": "p13",
+      "name": "Player 13",
+      "country": "TBD"
+    },
+    {
+      "id": "p14",
+      "name": "Player 14",
+      "country": "TBD"
+    },
+    {
+      "id": "p15",
+      "name": "Player 15",
+      "country": "TBD"
+    },
+    {
+      "id": "p16",
+      "name": "Player 16",
+      "country": "TBD"
+    }
   ],
   "groups": [
     {
       "id": "group-1",
       "name": "Group A",
-      "playerIds": ["p1", "p2", "p3", "p4"],
+      "playerIds": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
       "matches": [
-        { "id": "group-1-w1-m1", "week": 1, "player1Id": "p1", "player2Id": "p2", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-1-w1-m2", "week": 1, "player1Id": "p3", "player2Id": "p4", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-1-w2-m1", "week": 2, "player1Id": "p1", "player2Id": "p3", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-1-w2-m2", "week": 2, "player1Id": "p2", "player2Id": "p4", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-1-w3-m1", "week": 3, "player1Id": "p1", "player2Id": "p4", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-1-w3-m2", "week": 3, "player1Id": "p2", "player2Id": "p3", "player1Score": null, "player2Score": null, "winnerId": null }
+        {
+          "id": "group-1-w1-m1",
+          "week": 1,
+          "player1Id": "p1",
+          "player2Id": "p2",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w1-m2",
+          "week": 1,
+          "player1Id": "p3",
+          "player2Id": "p4",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w2-m1",
+          "week": 2,
+          "player1Id": "p1",
+          "player2Id": "p3",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w2-m2",
+          "week": 2,
+          "player1Id": "p2",
+          "player2Id": "p4",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w3-m1",
+          "week": 3,
+          "player1Id": "p1",
+          "player2Id": "p4",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w3-m2",
+          "week": 3,
+          "player1Id": "p2",
+          "player2Id": "p3",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        }
       ]
     },
     {
       "id": "group-2",
       "name": "Group B",
-      "playerIds": ["p5", "p6", "p7", "p8"],
+      "playerIds": [
+        "p5",
+        "p6",
+        "p7",
+        "p8"
+      ],
       "matches": [
-        { "id": "group-2-w1-m1", "week": 1, "player1Id": "p5", "player2Id": "p6", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-2-w1-m2", "week": 1, "player1Id": "p7", "player2Id": "p8", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-2-w2-m1", "week": 2, "player1Id": "p5", "player2Id": "p7", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-2-w2-m2", "week": 2, "player1Id": "p6", "player2Id": "p8", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-2-w3-m1", "week": 3, "player1Id": "p5", "player2Id": "p8", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-2-w3-m2", "week": 3, "player1Id": "p6", "player2Id": "p7", "player1Score": null, "player2Score": null, "winnerId": null }
+        {
+          "id": "group-2-w1-m1",
+          "week": 1,
+          "player1Id": "p5",
+          "player2Id": "p6",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w1-m2",
+          "week": 1,
+          "player1Id": "p7",
+          "player2Id": "p8",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w2-m1",
+          "week": 2,
+          "player1Id": "p5",
+          "player2Id": "p7",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w2-m2",
+          "week": 2,
+          "player1Id": "p6",
+          "player2Id": "p8",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w3-m1",
+          "week": 3,
+          "player1Id": "p5",
+          "player2Id": "p8",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w3-m2",
+          "week": 3,
+          "player1Id": "p6",
+          "player2Id": "p7",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        }
       ]
     },
     {
       "id": "group-3",
       "name": "Group C",
-      "playerIds": ["p9", "p10", "p11", "p12"],
+      "playerIds": [
+        "p9",
+        "p10",
+        "p11",
+        "p12"
+      ],
       "matches": [
-        { "id": "group-3-w1-m1", "week": 1, "player1Id": "p9", "player2Id": "p10", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-3-w1-m2", "week": 1, "player1Id": "p11", "player2Id": "p12", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-3-w2-m1", "week": 2, "player1Id": "p9", "player2Id": "p11", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-3-w2-m2", "week": 2, "player1Id": "p10", "player2Id": "p12", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-3-w3-m1", "week": 3, "player1Id": "p9", "player2Id": "p12", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-3-w3-m2", "week": 3, "player1Id": "p10", "player2Id": "p11", "player1Score": null, "player2Score": null, "winnerId": null }
+        {
+          "id": "group-3-w1-m1",
+          "week": 1,
+          "player1Id": "p9",
+          "player2Id": "p10",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-3-w1-m2",
+          "week": 1,
+          "player1Id": "p11",
+          "player2Id": "p12",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-3-w2-m1",
+          "week": 2,
+          "player1Id": "p9",
+          "player2Id": "p11",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-3-w2-m2",
+          "week": 2,
+          "player1Id": "p10",
+          "player2Id": "p12",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-3-w3-m1",
+          "week": 3,
+          "player1Id": "p9",
+          "player2Id": "p12",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-3-w3-m2",
+          "week": 3,
+          "player1Id": "p10",
+          "player2Id": "p11",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        }
       ]
     },
     {
       "id": "group-4",
       "name": "Group D",
-      "playerIds": ["p13", "p14", "p15", "p16"],
+      "playerIds": [
+        "p13",
+        "p14",
+        "p15",
+        "p16"
+      ],
       "matches": [
-        { "id": "group-4-w1-m1", "week": 1, "player1Id": "p13", "player2Id": "p14", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-4-w1-m2", "week": 1, "player1Id": "p15", "player2Id": "p16", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-4-w2-m1", "week": 2, "player1Id": "p13", "player2Id": "p15", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-4-w2-m2", "week": 2, "player1Id": "p14", "player2Id": "p16", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-4-w3-m1", "week": 3, "player1Id": "p13", "player2Id": "p16", "player1Score": null, "player2Score": null, "winnerId": null },
-        { "id": "group-4-w3-m2", "week": 3, "player1Id": "p14", "player2Id": "p15", "player1Score": null, "player2Score": null, "winnerId": null }
+        {
+          "id": "group-4-w1-m1",
+          "week": 1,
+          "player1Id": "p13",
+          "player2Id": "p14",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-4-w1-m2",
+          "week": 1,
+          "player1Id": "p15",
+          "player2Id": "p16",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-4-w2-m1",
+          "week": 2,
+          "player1Id": "p13",
+          "player2Id": "p15",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-4-w2-m2",
+          "week": 2,
+          "player1Id": "p14",
+          "player2Id": "p16",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-4-w3-m1",
+          "week": 3,
+          "player1Id": "p13",
+          "player2Id": "p16",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-4-w3-m2",
+          "week": 3,
+          "player1Id": "p14",
+          "player2Id": "p15",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        }
       ]
     }
   ],
-  "knockoutMatches": [],
-  "finalStageMatches": [],
-  "lastUpdated": "2026-06-10T12:00:00.000Z"
+  "knockoutMatches": [
+    {
+      "id": "ko-r1-pod0-a",
+      "round": 1,
+      "podIndex": 0,
+      "label": "A",
+      "participant1": {
+        "type": "groupSeed",
+        "groupId": "group-1",
+        "seed": 2
+      },
+      "participant2": {
+        "type": "groupSeed",
+        "groupId": "group-4",
+        "seed": 3
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r1-pod0-b",
+      "round": 1,
+      "podIndex": 0,
+      "label": "B",
+      "participant1": {
+        "type": "groupSeed",
+        "groupId": "group-4",
+        "seed": 2
+      },
+      "participant2": {
+        "type": "groupSeed",
+        "groupId": "group-1",
+        "seed": 3
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r1-pod1-a",
+      "round": 1,
+      "podIndex": 1,
+      "label": "A",
+      "participant1": {
+        "type": "groupSeed",
+        "groupId": "group-2",
+        "seed": 2
+      },
+      "participant2": {
+        "type": "groupSeed",
+        "groupId": "group-3",
+        "seed": 3
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r1-pod1-b",
+      "round": 1,
+      "podIndex": 1,
+      "label": "B",
+      "participant1": {
+        "type": "groupSeed",
+        "groupId": "group-3",
+        "seed": 2
+      },
+      "participant2": {
+        "type": "groupSeed",
+        "groupId": "group-2",
+        "seed": 3
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r2-pod0-seed1",
+      "round": 2,
+      "podIndex": 0,
+      "label": "seed1",
+      "participant1": {
+        "type": "groupWinner",
+        "groupId": "group-1"
+      },
+      "participant2": {
+        "type": "matchWinner",
+        "matchId": "ko-r1-pod1-a"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r2-pod0-seed2",
+      "round": 2,
+      "podIndex": 0,
+      "label": "seed2",
+      "participant1": {
+        "type": "groupWinner",
+        "groupId": "group-4"
+      },
+      "participant2": {
+        "type": "matchWinner",
+        "matchId": "ko-r1-pod1-b"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r2-pod1-seed1",
+      "round": 2,
+      "podIndex": 1,
+      "label": "seed1",
+      "participant1": {
+        "type": "groupWinner",
+        "groupId": "group-2"
+      },
+      "participant2": {
+        "type": "matchWinner",
+        "matchId": "ko-r1-pod0-a"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r2-pod1-seed2",
+      "round": 2,
+      "podIndex": 1,
+      "label": "seed2",
+      "participant1": {
+        "type": "groupWinner",
+        "groupId": "group-3"
+      },
+      "participant2": {
+        "type": "matchWinner",
+        "matchId": "ko-r1-pod0-b"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    }
+  ],
+  "finalStageMatches": [
+    {
+      "id": "final-r1-m0",
+      "roundName": "semifinal",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "final-r1-m1",
+      "roundName": "semifinal",
+      "roundOrder": 1,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "final-final",
+      "roundName": "final",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "final-3rd",
+      "roundName": "thirdPlace",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    }
+  ],
+  "lastUpdated": "2026-06-11T02:24:30.932Z"
 }
