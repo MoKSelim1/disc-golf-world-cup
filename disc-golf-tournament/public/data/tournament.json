@@ -11,78 +11,78 @@
     },
     {
       "id": "p2",
-      "name": "Player 2",
-      "country": "TBD"
+      "name": "Michael S",
+      "country": "Texas"
     },
     {
       "id": "p3",
-      "name": "Player 3",
-      "country": "TBD"
+      "name": "Enrique V",
+      "country": "Mexico"
     },
     {
       "id": "p4",
-      "name": "Player 4",
+      "name": "Keiler Sanchez",
       "country": "TBD"
     },
     {
       "id": "p5",
-      "name": "Player 5",
-      "country": "TBD"
+      "name": "Junior Rushin",
+      "country": "Dominican Republic"
     },
     {
       "id": "p6",
-      "name": "Player 6",
-      "country": "TBD"
+      "name": "Patric Morris",
+      "country": "Fort Worth"
     },
     {
       "id": "p7",
-      "name": "Player 7",
-      "country": "TBD"
+      "name": "Jorge P",
+      "country": "Wakanda"
     },
     {
       "id": "p8",
-      "name": "Player 8",
-      "country": "TBD"
+      "name": "Jason Prichett",
+      "country": "Kashubia"
     },
     {
       "id": "p9",
-      "name": "Player 9",
+      "name": "Donavan Sanchez",
       "country": "TBD"
     },
     {
       "id": "p10",
-      "name": "Player 10",
-      "country": "TBD"
+      "name": "Laws Borras",
+      "country": "Costa Rica"
     },
     {
       "id": "p11",
-      "name": "Player 11",
+      "name": "Eric B",
       "country": "TBD"
     },
     {
       "id": "p12",
-      "name": "Player 12",
+      "name": "Ben Lord",
       "country": "TBD"
     },
     {
       "id": "p13",
-      "name": "Player 13",
-      "country": "TBD"
+      "name": "Dylan Espinoza",
+      "country": "USA"
     },
     {
       "id": "p14",
-      "name": "Player 14",
+      "name": "Clayton S",
       "country": "TBD"
     },
     {
       "id": "p15",
-      "name": "Player 15",
+      "name": "Bobby T",
       "country": "TBD"
     },
     {
       "id": "p16",
-      "name": "Player 16",
-      "country": "TBD"
+      "name": "Antonio Rushin",
+      "country": "New Zealand"
     }
   ],
   "groups": [
@@ -146,9 +146,9 @@
           "week": 3,
           "player1Id": "p2",
           "player2Id": "p3",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 59,
+          "player2Score": 52,
+          "winnerId": "p3"
         }
       ]
     },
@@ -251,9 +251,9 @@
           "week": 2,
           "player1Id": "p9",
           "player2Id": "p11",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 54,
+          "player2Score": 51,
+          "winnerId": "p11"
         },
         {
           "id": "group-3-w2-m2",
@@ -308,9 +308,9 @@
           "week": 1,
           "player1Id": "p15",
           "player2Id": "p16",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 54,
+          "player2Score": 63,
+          "winnerId": "p15"
         },
         {
           "id": "group-4-w2-m1",
@@ -555,5 +555,5 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-11T02:24:30.932Z"
+  "lastUpdated": "2026-06-11T02:56:37.189Z"
 }
