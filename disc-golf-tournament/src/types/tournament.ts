@@ -91,6 +91,7 @@ export interface TournamentData {
   groups: Group[];
   knockoutMatches: KnockoutMatch[];
   finalStageMatches: FinalStageMatch[];
+  rulesMarkdown?: string;
   lastUpdated: string;
 }
 
