@@ -24,7 +24,8 @@ type TournamentAction =
   | { type: 'UPDATE_PLAYER'; player: Player }
   | { type: 'UPDATE_GROUP_SCORE'; matchId: string; player1Score: number | null; player2Score: number | null }
   | { type: 'UPDATE_KNOCKOUT_SCORE'; matchId: string; player1Score: number | null; player2Score: number | null }
-  | { type: 'UPDATE_FINAL_SCORE'; matchId: string; player1Score: number | null; player2Score: number | null };
+  | { type: 'UPDATE_FINAL_SCORE'; matchId: string; player1Score: number | null; player2Score: number | null }
+  | { type: 'UPDATE_RULES'; rulesMarkdown: string };
 
 interface TournamentContextValue {
   data: TournamentData;
@@ -83,6 +84,11 @@ function reducer(state: TournamentData, action: TournamentAction): TournamentDat
         ...state,
         finalStageMatches: updateScores(state.finalStageMatches, action.matchId, action.player1Score, action.player2Score),
       });
+    case 'UPDATE_RULES':
+      return {
+        ...state,
+        rulesMarkdown: action.rulesMarkdown,
+      };
     default:
       return state;
   }

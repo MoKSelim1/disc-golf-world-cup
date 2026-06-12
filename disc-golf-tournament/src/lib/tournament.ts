@@ -25,7 +25,12 @@ export function tournamentFormat(data: TournamentData): TournamentFormat {
   return data.format ?? 'worldCupTopThree';
 }
 
+export function hasTenPlayerPlayIn(data: TournamentData): boolean {
+  return data.players.length === 10 && data.groups.length === 2;
+}
+
 export function advancingPerGroup(data: TournamentData): number {
+  if (hasTenPlayerPlayIn(data)) return 3;
   return tournamentFormat(data) === 'groupTopTwoFinal' ? 2 : 3;
 }
 
@@ -47,12 +52,9 @@ export function recomputeTournament(data: TournamentData): TournamentData {
   }));
 
   const format = tournamentFormat(data);
-  const knockoutMatches =
-    format === 'worldCupTopThree' ? recomputeKnockoutMatches(groups, data.knockoutMatches) : [];
-  const finalEntrants =
-    format === 'worldCupTopThree'
-      ? getKnockoutRoundTwoWinners(knockoutMatches)
-      : groupSeedEntrants(groups, 2);
+  const usesKnockoutPlayIn = format === 'worldCupTopThree' || hasTenPlayerPlayIn({ ...data, groups });
+  const knockoutMatches = usesKnockoutPlayIn ? recomputeKnockoutMatches(groups, data.knockoutMatches) : [];
+  const finalEntrants = usesKnockoutPlayIn ? getKnockoutRoundTwoWinners(knockoutMatches) : groupSeedEntrants(groups, 2);
   const finalStageMatches = recomputeFinalStageMatches(finalEntrants, data.finalStageMatches);
 
   return { ...data, format, groups, knockoutMatches, finalStageMatches };

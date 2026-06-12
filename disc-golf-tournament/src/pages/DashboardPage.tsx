@@ -63,7 +63,7 @@ export function DashboardPage() {
           <article className="group-summary-card" key={group.id}>
             <div className="panel-heading">
               <h3>{group.name}</h3>
-              <span>{group.matches.filter((match) => match.winnerId).length}/6 matches</span>
+              <span>{group.matches.filter((match) => match.winnerId).length}/{group.matches.length} matches</span>
             </div>
             <div className="rank-list">
               {computeGroupStandings(group).map((row) => (
