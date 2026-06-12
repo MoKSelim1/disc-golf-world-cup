@@ -7,8 +7,9 @@ import { KnockoutScoreEntry } from '../components/admin/KnockoutScoreEntry';
 import { FinalStageScoreEntry } from '../components/admin/FinalStageScoreEntry';
 import { PublishPanel } from '../components/admin/PublishPanel';
 import { TournamentManager } from '../components/admin/TournamentManager';
+import { RulesEditor } from '../components/admin/RulesEditor';
 
-type AdminTab = 'tournaments' | 'players' | 'groups' | 'knockout' | 'finals' | 'publish';
+type AdminTab = 'tournaments' | 'players' | 'groups' | 'knockout' | 'finals' | 'rules' | 'publish';
 
 const tabs: Array<{ id: AdminTab; label: string }> = [
   { id: 'tournaments', label: 'Tournaments' },
@@ -16,6 +17,7 @@ const tabs: Array<{ id: AdminTab; label: string }> = [
   { id: 'groups', label: 'Group Scores' },
   { id: 'knockout', label: 'Knockout' },
   { id: 'finals', label: 'Finals' },
+  { id: 'rules', label: 'Rules' },
   { id: 'publish', label: 'Publish' },
 ];
 
@@ -44,6 +46,7 @@ export function AdminPage() {
       {tab === 'groups' && <GroupScoreEntry />}
       {tab === 'knockout' && <KnockoutScoreEntry />}
       {tab === 'finals' && <FinalStageScoreEntry />}
+      {tab === 'rules' && <RulesEditor />}
       {tab === 'publish' && <PublishPanel />}
     </div>
   );

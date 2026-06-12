@@ -265,57 +265,84 @@
       ]
     }
   ],
-  "knockoutMatches": [],
+  "knockoutMatches": [
+    {
+      "id": "ko-r1-pod0-a",
+      "round": 1,
+      "podIndex": 0,
+      "label": "A",
+      "participant1": {
+        "type": "groupSeed",
+        "groupId": "group-1",
+        "seed": 2
+      },
+      "participant2": {
+        "type": "groupSeed",
+        "groupId": "group-2",
+        "seed": 3
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r1-pod0-b",
+      "round": 1,
+      "podIndex": 0,
+      "label": "B",
+      "participant1": {
+        "type": "groupSeed",
+        "groupId": "group-2",
+        "seed": 2
+      },
+      "participant2": {
+        "type": "groupSeed",
+        "groupId": "group-1",
+        "seed": 3
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r2-pod0-seed1",
+      "round": 2,
+      "podIndex": 0,
+      "label": "seed1",
+      "participant1": {
+        "type": "groupWinner",
+        "groupId": "group-1"
+      },
+      "participant2": {
+        "type": "matchWinner",
+        "matchId": "ko-r1-pod0-a"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "ko-r2-pod0-seed2",
+      "round": 2,
+      "podIndex": 0,
+      "label": "seed2",
+      "participant1": {
+        "type": "groupWinner",
+        "groupId": "group-2"
+      },
+      "participant2": {
+        "type": "matchWinner",
+        "matchId": "ko-r1-pod0-b"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    }
+  ],
   "finalStageMatches": [
-    {
-      "id": "final-r1-m0",
-      "roundName": "semifinal",
-      "roundOrder": 0,
-      "participant1": {
-        "type": "player",
-        "playerId": "p1"
-      },
-      "participant2": {
-        "type": "player",
-        "playerId": "p3"
-      },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
-    },
-    {
-      "id": "final-r1-m1",
-      "roundName": "semifinal",
-      "roundOrder": 1,
-      "participant1": {
-        "type": "player",
-        "playerId": "p2"
-      },
-      "participant2": {
-        "type": "player",
-        "playerId": "p4"
-      },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
-    },
     {
       "id": "final-final",
       "roundName": "final",
-      "roundOrder": 0,
-      "participant1": {
-        "type": "tbd"
-      },
-      "participant2": {
-        "type": "tbd"
-      },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
-    },
-    {
-      "id": "final-3rd",
-      "roundName": "thirdPlace",
       "roundOrder": 0,
       "participant1": {
         "type": "tbd"

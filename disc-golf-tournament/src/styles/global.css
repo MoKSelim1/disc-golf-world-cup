@@ -64,7 +64,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -73,13 +74,20 @@ button {
   cursor: pointer;
 }
 
-input {
+input,
+textarea {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 0.7rem 0.75rem;
   color: var(--ink);
   background: #fff;
+}
+
+textarea {
+  min-height: 320px;
+  resize: vertical;
+  line-height: 1.45;
 }
 
 select {
@@ -520,7 +528,8 @@ button[type='submit'],
 }
 
 .player-editor,
-.publish-grid {
+.publish-grid,
+.rules-editor-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
@@ -572,7 +581,8 @@ button[type='submit'] {
 }
 
 .create-tournament-form,
-.tournament-list {
+.tournament-list,
+.rules-editor-toolbar {
   display: grid;
   gap: 12px;
   margin-top: 14px;
@@ -615,6 +625,24 @@ button[type='submit'] {
   background: #eef7f0;
 }
 
+.rules-editor-toolbar {
+  grid-template-columns: repeat(auto-fit, minmax(105px, max-content));
+  margin-bottom: 14px;
+}
+
+.rules-editor-toolbar button {
+  border-radius: 6px;
+  padding: 0.62rem 0.82rem;
+  background: var(--green);
+  color: white;
+  font-weight: 900;
+}
+
+.rules-preview {
+  max-height: 520px;
+  overflow: auto;
+}
+
 .admin-gate {
   max-width: 440px;
 }
@@ -639,6 +667,7 @@ button[type='submit'] {
   .score-editor,
   .player-editor,
   .publish-grid,
+  .rules-editor-grid,
   .readiness-grid {
     grid-template-columns: 1fr;
   }
