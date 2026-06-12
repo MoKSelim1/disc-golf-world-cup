@@ -29,7 +29,7 @@
     {
       "id": "p5",
       "name": "Amber",
-      "country": "TBD"
+      "country": "Portugal"
     },
     {
       "id": "p6",
@@ -44,17 +44,17 @@
     {
       "id": "p8",
       "name": "Robyn",
-      "country": "TBD"
+      "country": "South Africa"
     },
     {
       "id": "p9",
       "name": "Melissa",
-      "country": "TBD"
+      "country": "Netherlands"
     },
     {
       "id": "p10",
       "name": "Beth",
-      "country": "TBD"
+      "country": "Ireland"
     }
   ],
   "groups": [
@@ -328,5 +328,5 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-12T00:37:21.083Z"
+  "lastUpdated": "2026-06-12T00:49:00.582Z"
 }
