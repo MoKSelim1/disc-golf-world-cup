@@ -101,9 +101,9 @@
           "week": 1,
           "player1Id": "p1",
           "player2Id": "p2",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 54,
+          "player2Score": 59,
+          "winnerId": "p1"
         },
         {
           "id": "group-1-w1-m2",
@@ -212,9 +212,9 @@
           "week": 3,
           "player1Id": "p6",
           "player2Id": "p7",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 60,
+          "player2Score": 54,
+          "winnerId": "p7"
         }
       ]
     },
@@ -260,9 +260,9 @@
           "week": 2,
           "player1Id": "p10",
           "player2Id": "p12",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 62,
+          "player2Score": 54,
+          "winnerId": "p12"
         },
         {
           "id": "group-3-w3-m1",
@@ -326,9 +326,9 @@
           "week": 2,
           "player1Id": "p14",
           "player2Id": "p16",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 54,
+          "player2Score": 66,
+          "winnerId": "p14"
         },
         {
           "id": "group-4-w3-m1",
@@ -555,7 +555,7 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-12T00:45:22.709Z",
+  "lastUpdated": "2026-06-12T02:07:08.720Z",
   "tournamentId": "disc-golf-world-cup-2026",
   "format": "worldCupTopThree"
 }
