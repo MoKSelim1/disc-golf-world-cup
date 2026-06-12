@@ -22,7 +22,7 @@
     {
       "id": "p4",
       "name": "Keiler Sanchez",
-      "country": "TBD"
+      "country": "USA"
     },
     {
       "id": "p5",
@@ -47,7 +47,7 @@
     {
       "id": "p9",
       "name": "Donavan Sanchez",
-      "country": "TBD"
+      "country": "USA"
     },
     {
       "id": "p10",
@@ -72,7 +72,7 @@
     {
       "id": "p14",
       "name": "Clayton S",
-      "country": "TBD"
+      "country": "USA"
     },
     {
       "id": "p15",
@@ -555,5 +555,7 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-11T16:47:42.784Z"
+  "lastUpdated": "2026-06-12T00:45:22.709Z",
+  "tournamentId": "disc-golf-world-cup-2026",
+  "format": "worldCupTopThree"
 }
