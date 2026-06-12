@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "activeTournamentId": "disc-golf-world-cup-2026",
+  "activeTournamentId": "womens-disc-golf-world-cup-presented-by-house-of",
   "tournaments": [
     {
       "id": "disc-golf-world-cup-2026",
@@ -10,7 +10,16 @@
       "format": "worldCupTopThree",
       "playerCount": 16,
       "lastUpdated": "2026-06-11T16:47:42.784Z"
+    },
+    {
+      "id": "womens-disc-golf-world-cup-presented-by-house-of",
+      "name": "Womens Disc Golf World Cup presented by House of Flight",
+      "status": "upcoming",
+      "dataPath": "data/tournaments/womens-disc-golf-world-cup-presented-by-house-of.json",
+      "format": "groupTopTwoFinal",
+      "playerCount": 10,
+      "lastUpdated": "2026-06-12T00:37:21.083Z"
     }
   ],
-  "lastUpdated": "2026-06-11T16:47:42.784Z"
+  "lastUpdated": "2026-06-12T00:37:21.083Z"
 }
