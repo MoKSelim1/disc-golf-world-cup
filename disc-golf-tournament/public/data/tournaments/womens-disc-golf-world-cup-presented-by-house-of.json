@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 2,
+  "tournamentId": "womens-disc-golf-world-cup-presented-by-house-of",
+  "tournamentName": "Womens Disc Golf World Cup presented by House of Flight",
+  "format": "groupTopTwoFinal",
+  "buyInAmount": 20,
+  "numGroups": 2,
+  "players": [
+    {
+      "id": "p1",
+      "name": "Candace",
+      "country": "TBD"
+    },
+    {
+      "id": "p2",
+      "name": "Katlyn ",
+      "country": "TBD"
+    },
+    {
+      "id": "p3",
+      "name": "Rebecca",
+      "country": "TBD"
+    },
+    {
+      "id": "p4",
+      "name": "Lauren ",
+      "country": "France"
+    },
+    {
+      "id": "p5",
+      "name": "Amber",
+      "country": "TBD"
+    },
+    {
+      "id": "p6",
+      "name": "Lisa",
+      "country": "Iceland"
+    },
+    {
+      "id": "p7",
+      "name": "Karen",
+      "country": "Kyrgyzstan"
+    },
+    {
+      "id": "p8",
+      "name": "Robyn",
+      "country": "TBD"
+    },
+    {
+      "id": "p9",
+      "name": "Melissa",
+      "country": "TBD"
+    },
+    {
+      "id": "p10",
+      "name": "Beth",
+      "country": "TBD"
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-1",
+      "name": "Group A",
+      "playerIds": [
+        "p1",
+        "p3",
+        "p5",
+        "p7",
+        "p9"
+      ],
+      "matches": [
+        {
+          "id": "group-1-w1-m1",
+          "week": 1,
+          "player1Id": "p3",
+          "player2Id": "p9",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w1-m2",
+          "week": 1,
+          "player1Id": "p5",
+          "player2Id": "p7",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w2-m1",
+          "week": 2,
+          "player1Id": "p1",
+          "player2Id": "p9",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w2-m2",
+          "week": 2,
+          "player1Id": "p3",
+          "player2Id": "p5",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w3-m1",
+          "week": 3,
+          "player1Id": "p1",
+          "player2Id": "p7",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w3-m2",
+          "week": 3,
+          "player1Id": "p9",
+          "player2Id": "p5",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w4-m1",
+          "week": 4,
+          "player1Id": "p1",
+          "player2Id": "p5",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w4-m2",
+          "week": 4,
+          "player1Id": "p7",
+          "player2Id": "p3",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w5-m1",
+          "week": 5,
+          "player1Id": "p1",
+          "player2Id": "p3",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-1-w5-m2",
+          "week": 5,
+          "player1Id": "p7",
+          "player2Id": "p9",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        }
+      ]
+    },
+    {
+      "id": "group-2",
+      "name": "Group B",
+      "playerIds": [
+        "p2",
+        "p4",
+        "p6",
+        "p8",
+        "p10"
+      ],
+      "matches": [
+        {
+          "id": "group-2-w1-m1",
+          "week": 1,
+          "player1Id": "p4",
+          "player2Id": "p10",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w1-m2",
+          "week": 1,
+          "player1Id": "p6",
+          "player2Id": "p8",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w2-m1",
+          "week": 2,
+          "player1Id": "p2",
+          "player2Id": "p10",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w2-m2",
+          "week": 2,
+          "player1Id": "p4",
+          "player2Id": "p6",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w3-m1",
+          "week": 3,
+          "player1Id": "p2",
+          "player2Id": "p8",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w3-m2",
+          "week": 3,
+          "player1Id": "p10",
+          "player2Id": "p6",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w4-m1",
+          "week": 4,
+          "player1Id": "p2",
+          "player2Id": "p6",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w4-m2",
+          "week": 4,
+          "player1Id": "p8",
+          "player2Id": "p4",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w5-m1",
+          "week": 5,
+          "player1Id": "p2",
+          "player2Id": "p4",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        },
+        {
+          "id": "group-2-w5-m2",
+          "week": 5,
+          "player1Id": "p8",
+          "player2Id": "p10",
+          "player1Score": null,
+          "player2Score": null,
+          "winnerId": null
+        }
+      ]
+    }
+  ],
+  "knockoutMatches": [],
+  "finalStageMatches": [
+    {
+      "id": "final-r1-m0",
+      "roundName": "semifinal",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "player",
+        "playerId": "p1"
+      },
+      "participant2": {
+        "type": "player",
+        "playerId": "p3"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "final-r1-m1",
+      "roundName": "semifinal",
+      "roundOrder": 1,
+      "participant1": {
+        "type": "player",
+        "playerId": "p2"
+      },
+      "participant2": {
+        "type": "player",
+        "playerId": "p4"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "final-final",
+      "roundName": "final",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "final-3rd",
+      "roundName": "thirdPlace",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    }
+  ],
+  "lastUpdated": "2026-06-12T00:37:21.083Z"
+}
