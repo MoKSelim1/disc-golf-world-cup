@@ -23,6 +23,7 @@ export function GroupsPage() {
                     <th>Rank</th>
                     <th>Player</th>
                     <th>Wins</th>
+                    <th>Losses</th>
                     <th>Played</th>
                     <th>Total</th>
                   </tr>
@@ -33,6 +34,7 @@ export function GroupsPage() {
                       <td>{row.rank}</td>
                       <td>{formatPlayer(getPlayer(data.players, row.playerId))}</td>
                       <td>{row.wins}</td>
+                      <td>{row.losses}</td>
                       <td>{row.played}</td>
                       <td>{row.totalScore}</td>
                     </tr>

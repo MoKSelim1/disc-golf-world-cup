@@ -26,6 +26,7 @@ export interface Group {
 export interface GroupStandingRow {
   playerId: PlayerId;
   wins: number;
+  losses: number;
   totalScore: number;
   played: number;
   rank: number;

@@ -49,7 +49,7 @@ export function computeGroupStandings(group: Group): GroupStandingRow[] {
   const rows = new Map<PlayerId, Omit<GroupStandingRow, 'rank'>>();
 
   group.playerIds.forEach((playerId) => {
-    rows.set(playerId, { playerId, wins: 0, totalScore: 0, played: 0 });
+    rows.set(playerId, { playerId, wins: 0, losses: 0, totalScore: 0, played: 0 });
   });
 
   group.matches.forEach((match) => {
@@ -70,7 +70,10 @@ export function computeGroupStandings(group: Group): GroupStandingRow[] {
       match.player1Score,
       match.player2Score,
     );
-    if (winnerId) rows.get(winnerId)!.wins += 1;
+    if (winnerId) {
+      rows.get(winnerId)!.wins += 1;
+      rows.get(winnerId === match.player1Id ? match.player2Id : match.player1Id)!.losses += 1;
+    }
   });
 
   return Array.from(rows.values())
