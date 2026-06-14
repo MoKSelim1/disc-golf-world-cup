@@ -137,9 +137,9 @@
           "week": 4,
           "player1Id": "p7",
           "player2Id": "p3",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 66,
+          "player2Score": 63,
+          "winnerId": "p3"
         },
         {
           "id": "group-1-w5-m1",
@@ -397,5 +397,5 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-13T17:25:12.159Z"
+  "lastUpdated": "2026-06-14T03:42:17.976Z"
 }
