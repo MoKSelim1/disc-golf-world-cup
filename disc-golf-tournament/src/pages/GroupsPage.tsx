@@ -2,12 +2,13 @@ import { useTournament } from '../context/TournamentContext';
 import { computeGroupStandings } from '../lib/groupStandings';
 import { formatPlayer, getPlayer } from '../lib/display';
 import { MatchCard } from '../components/common/MatchCard';
+import { RemainingGroupGames } from '../components/common/RemainingGroupGames';
 
 export function GroupsPage() {
   const { data } = useTournament();
-
   return (
     <div className="page-stack">
+      <RemainingGroupGames />
       {data.groups.map((group) => (
         <section className="panel" key={group.id}>
           <div className="panel-heading">
