@@ -61,8 +61,10 @@ function loserOf(match: FinalStageMatch): PlayerId | null {
 export function recomputeFinalStageMatches(
   entrants: PlayerId[],
   existingMatches: FinalStageMatch[],
+  expectedEntrantCount = 4,
 ): FinalStageMatch[] {
-  const skeleton = generateFinalStageMatches(Math.max(2, entrants.length || 4));
+  const entrantCount = Math.max(2, entrants.length, expectedEntrantCount);
+  const skeleton = generateFinalStageMatches(entrantCount);
   const byId = new Map(existingMatches.map((match) => [match.id, match]));
   const matches = skeleton.map((match) => {
     const previous = byId.get(match.id);

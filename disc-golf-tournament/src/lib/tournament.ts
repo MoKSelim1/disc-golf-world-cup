@@ -55,7 +55,14 @@ export function recomputeTournament(data: TournamentData): TournamentData {
   const usesKnockoutPlayIn = format === 'worldCupTopThree' || hasTenPlayerPlayIn({ ...data, groups });
   const knockoutMatches = usesKnockoutPlayIn ? recomputeKnockoutMatches(groups, data.knockoutMatches) : [];
   const finalEntrants = usesKnockoutPlayIn ? getKnockoutRoundTwoWinners(knockoutMatches) : groupSeedEntrants(groups, 2);
-  const finalStageMatches = recomputeFinalStageMatches(finalEntrants, data.finalStageMatches);
+  const expectedFinalEntrants = usesKnockoutPlayIn
+    ? knockoutMatches.filter((match) => match.round === 2).length
+    : groups.length * 2;
+  const finalStageMatches = recomputeFinalStageMatches(
+    finalEntrants,
+    data.finalStageMatches,
+    expectedFinalEntrants,
+  );
 
   return { ...data, format, groups, knockoutMatches, finalStageMatches };
 }
