@@ -3,6 +3,7 @@ import { useTournament } from '../context/TournamentContext';
 import { computeGroupStandings } from '../lib/groupStandings';
 import { computePayout } from '../lib/payout';
 import { formatPlayer, getPlayer, participantLabel } from '../lib/display';
+import { RemainingGroupGames } from '../components/common/RemainingGroupGames';
 import { advancingPerGroup } from '../lib/tournament';
 import type { Group, TournamentData } from '../types/tournament';
 
@@ -167,6 +168,8 @@ export function DashboardPage() {
           </small>
         </article>
       </section>
+
+      <RemainingGroupGames />
 
       <section className="panel dashboard-control-panel">
         <div className="panel-heading">
