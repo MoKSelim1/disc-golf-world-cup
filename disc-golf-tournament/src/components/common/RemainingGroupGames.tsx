@@ -6,7 +6,7 @@ export function RemainingGroupGames() {
   const pendingMatchesByWeek = data.groups
     .flatMap((group) =>
       group.matches
-        .filter((match) => match.player1Score === null || match.player2Score === null)
+        .filter((match) => !match.winnerId)
         .map((match) => ({ group, match })),
     )
     .sort((a, b) =>
@@ -36,7 +36,7 @@ export function RemainingGroupGames() {
     <section className="panel" id="remaining-group-games">
       <div className="panel-heading">
         <h2>Remaining group games</h2>
-        <span>Unplayed matchups, grouped by week so the pending list is easy to scan</span>
+        <span>Unplayed matchups and unresolved ties, grouped by week so the pending list is easy to scan</span>
       </div>
       {pendingMatchesByWeek.length > 0 ? (
         <div className="pending-week-list">
@@ -44,22 +44,29 @@ export function RemainingGroupGames() {
             <div className="pending-week" key={week.week}>
               <h3>Week {week.week}</h3>
               <div className="pending-match-list">
-                {week.entries.map(({ group, match }) => (
-                  <div className="pending-match" key={match.id}>
-                    <span>{group.name}</span>
-                    <strong>
-                      {formatPlayer(getPlayer(data.players, match.player1Id))} vs{' '}
-                      {formatPlayer(getPlayer(data.players, match.player2Id))}
-                    </strong>
-                    <em>{match.id.toUpperCase()}</em>
-                  </div>
-                ))}
+                {week.entries.map(({ group, match }) => {
+                  const needsDecision =
+                    match.player1Score !== null &&
+                    match.player2Score !== null &&
+                    match.player1Score === match.player2Score;
+
+                  return (
+                    <div className="pending-match" key={match.id}>
+                      <span>{group.name}</span>
+                      <strong>
+                        {formatPlayer(getPlayer(data.players, match.player1Id))} vs{' '}
+                        {formatPlayer(getPlayer(data.players, match.player2Id))}
+                      </strong>
+                      <em>{needsDecision ? `${match.id.toUpperCase()} - Tie needs decision` : match.id.toUpperCase()}</em>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <p className="panel-note">All group-stage games have been played.</p>
+        <p className="panel-note">All group-stage games are resolved.</p>
       )}
     </section>
   );
