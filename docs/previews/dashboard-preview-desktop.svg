@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1180" viewBox="0 0 1440 1180" role="img" aria-labelledby="title desc">
+  <title id="title">Desktop dashboard preview</title>
+  <desc id="desc">A static preview of the sleek Disc Golf World Cup dashboard showing a group-stage hero, progress cards, filters, standings cards, and bracket preview.</desc>
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef5ee"/>
+      <stop offset="0.45" stop-color="#f7f6f2"/>
+      <stop offset="1" stop-color="#eaf2f5"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102f25"/>
+      <stop offset="0.48" stop-color="#18553f"/>
+      <stop offset="1" stop-color="#1d5a80"/>
+    </linearGradient>
+    <linearGradient id="greenBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#256b4f"/>
+      <stop offset="1" stop-color="#225f87"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#1b261e" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .title{font-family:Inter,Segoe UI,sans-serif;font-weight:900;letter-spacing:-4px;fill:white}
+      .body{font-family:Inter,Segoe UI,sans-serif;font-weight:700;fill:#69756d}
+      .label{font-family:Inter,Segoe UI,sans-serif;font-size:19px;font-weight:900;text-transform:uppercase;fill:#69756d}
+      .whiteLabel{font-family:Inter,Segoe UI,sans-serif;font-size:19px;font-weight:900;text-transform:uppercase;fill:#b7e4c7}
+      .h2{font-family:Inter,Segoe UI,sans-serif;font-size:34px;font-weight:900;fill:#202721}
+      .h3{font-family:Inter,Segoe UI,sans-serif;font-size:26px;font-weight:900;fill:#202721}
+      .stat{font-family:Inter,Segoe UI,sans-serif;font-size:38px;font-weight:900;fill:#202721}
+      .small{font-family:Inter,Segoe UI,sans-serif;font-size:20px;font-weight:800;fill:#69756d}
+      .tiny{font-family:Inter,Segoe UI,sans-serif;font-size:17px;font-weight:900;fill:#69756d}
+      .white{fill:white}.mutedWhite{fill:rgba(255,255,255,.78)}
+      .card{fill:white;stroke:#d9ddd6;stroke-width:1.5;filter:url(#shadow)}
+      .soft{fill:#f8faf7}.line{stroke:#d9ddd6;stroke-width:1.5}.green{fill:#256b4f}.gold{fill:#c9922a}.blue{fill:#225f87}.muted{fill:#69756d}
+    </style>
+  </defs>
+  <rect width="1440" height="1180" fill="url(#pageBg)"/>
+  <g transform="translate(72 54)">
+    <text class="label" x="0" y="0">Tournament hub</text>
+    <text class="h2" x="0" y="48">Disc Golf World Cup</text>
+    <g transform="translate(0 90)">
+      <rect width="1296" height="300" rx="28" fill="url(#hero)" filter="url(#shadow)"/>
+      <circle cx="210" cy="80" r="170" fill="#b7e4c7" opacity=".18"/>
+      <circle cx="1120" cy="52" r="150" fill="#c9922a" opacity=".21"/>
+      <ellipse cx="910" cy="340" rx="540" ry="120" fill="white" opacity=".08" transform="rotate(-9 910 340)"/>
+      <text class="whiteLabel" x="48" y="70">Live qualifying picture</text>
+      <text class="title" x="48" y="150" font-size="70">Disc Golf World Cup</text>
+      <text class="mutedWhite body" x="48" y="202" font-size="24">Group cards prioritize current cut lines, remaining scorecards, wins, losses, and games played.</text>
+      <g transform="translate(48 236)">
+        <rect width="138" height="42" rx="21" fill="white" opacity=".14" stroke="white" stroke-opacity=".3"/>
+        <text class="white small" x="21" y="28">16 Players</text>
+        <rect x="154" width="130" height="42" rx="21" fill="white" opacity=".14" stroke="white" stroke-opacity=".3"/>
+        <text class="white small" x="177" y="28">4 Groups</text>
+        <rect x="300" width="118" height="42" rx="21" fill="white" opacity=".14" stroke="white" stroke-opacity=".3"/>
+        <text class="white small" x="322" y="28">$320 Pool</text>
+      </g>
+      <g transform="translate(940 38)">
+        <rect width="296" height="224" rx="24" fill="white" opacity=".13" stroke="white" stroke-opacity=".24"/>
+        <text class="whiteLabel" x="24" y="42">Now showing</text>
+        <text class="white" x="24" y="110" font-family="Inter,Segoe UI,sans-serif" font-size="48" font-weight="900">Group</text>
+        <text class="white" x="24" y="160" font-family="Inter,Segoe UI,sans-serif" font-size="48" font-weight="900">Stage</text>
+        <rect x="24" y="178" width="50" height="8" rx="4" fill="#c9922a"/>
+        <rect x="84" y="178" width="50" height="8" rx="4" fill="white" opacity=".24"/>
+        <rect x="144" y="178" width="50" height="8" rx="4" fill="white" opacity=".24"/>
+        <rect x="204" y="178" width="50" height="8" rx="4" fill="white" opacity=".24"/>
+        <text class="mutedWhite body" x="24" y="208" font-size="17">20 group scorecards left.</text>
+      </g>
+    </g>
+
+    <g transform="translate(0 420)">
+      <g>
+        <rect class="card" width="306" height="144" rx="18"/>
+        <text class="label" x="24" y="38">Group Stage</text>
+        <text class="stat" x="24" y="88">4/24</text>
+        <rect class="soft" x="24" y="104" width="258" height="10" rx="5"/>
+        <rect x="24" y="104" width="43" height="10" rx="5" fill="url(#greenBar)"/>
+        <text class="tiny" x="24" y="132">17% complete</text>
+      </g>
+      <g transform="translate(330 0)">
+        <rect class="card" width="306" height="144" rx="18"/>
+        <text class="label" x="24" y="38">Knockout</text>
+        <text class="stat" x="24" y="88">0%</text>
+        <rect class="soft" x="24" y="104" width="258" height="10" rx="5"/>
+        <text class="tiny" x="24" y="132">8 matches</text>
+      </g>
+      <g transform="translate(660 0)">
+        <rect class="card" width="306" height="144" rx="18"/>
+        <text class="label" x="24" y="38">Final Bracket</text>
+        <text class="stat" x="24" y="88">0%</text>
+        <rect class="soft" x="24" y="104" width="258" height="10" rx="5"/>
+        <text class="tiny" x="24" y="132">4 scheduled matches</text>
+      </g>
+      <g transform="translate(990 0)">
+        <rect class="card" width="306" height="144" rx="18" stroke="#c9922a" stroke-opacity=".45"/>
+        <text class="label" x="24" y="38">Cut Line Watch</text>
+        <text class="stat" x="24" y="86" fill="#164735">Group A</text>
+        <text class="tiny" x="24" y="116">Bubble holder and chaser update live.</text>
+      </g>
+    </g>
+
+    <g transform="translate(0 596)">
+      <rect class="card" width="1296" height="108" rx="22"/>
+      <text class="label" x="28" y="36">Interactive dashboard</text>
+      <text class="h3" x="28" y="74">Group Stage Command Center</text>
+      <g transform="translate(760 32)">
+        <rect width="122" height="46" rx="23" fill="#256b4f"/><text class="white small" x="18" y="30">All Groups</text>
+        <rect x="136" width="100" height="46" rx="23" class="soft" stroke="#d9ddd6"/><text class="small" x="158" y="30">Group A</text>
+        <rect x="250" width="100" height="46" rx="23" class="soft" stroke="#d9ddd6"/><text class="small" x="272" y="30">Group B</text>
+        <rect x="364" width="100" height="46" rx="23" class="soft" stroke="#d9ddd6"/><text class="small" x="386" y="30">Group C</text>
+      </g>
+    </g>
+
+    <g transform="translate(0 736)">
+      <g>
+        <rect class="card" width="636" height="286" rx="22"/>
+        <text class="label" x="24" y="38">Live table</text><text class="h3" x="24" y="74">Group A</text><text class="small" x="508" y="54">1/6 matches</text>
+        <rect class="soft" x="24" y="92" width="588" height="10" rx="5"/><rect x="24" y="92" width="98" height="10" rx="5" fill="url(#greenBar)"/>
+        <text class="tiny" x="32" y="132">Seed</text><text class="tiny" x="96" y="132">Player</text><text class="tiny" x="408" y="132">W-L</text><text class="tiny" x="480" y="132">GP</text><text class="tiny" x="536" y="132">Total</text>
+        <rect x="24" y="146" width="588" height="50" rx="10" fill="#eef7f0" stroke="#dce9df"/>
+        <circle cx="49" cy="171" r="15" fill="#256b4f"/><text class="white tiny" x="45" y="177">1</text><text class="h3" x="86" y="181" font-size="22">🇺🇸 Player 1</text><text class="small" x="416" y="179">1-0</text><text class="small" x="488" y="179">1</text><text class="small" x="548" y="179">54</text>
+        <rect x="24" y="204" width="588" height="50" rx="10" fill="#f8faf7" stroke="#dce9df"/>
+        <circle cx="49" cy="229" r="15" fill="#256b4f"/><text class="white tiny" x="45" y="235">2</text><text class="h3" x="86" y="239" font-size="22">🇨🇦 Player 3</text><text class="small" x="416" y="237">0-0</text><text class="small" x="488" y="237">0</text><text class="small" x="548" y="237">0</text>
+        <rect x="24" y="262" width="588" height="1" fill="#d9ddd6"/>
+      </g>
+      <g transform="translate(660 0)">
+        <rect class="card" width="636" height="286" rx="22"/>
+        <text class="label" x="24" y="38">Dynamic bracket preview</text><text class="h3" x="24" y="74">Next Knockout Entrants</text><text class="small" x="390" y="54">Resolved from standings</text>
+        <g transform="translate(24 104)">
+          <rect class="soft" width="278" height="138" rx="16" stroke="#d9ddd6"/>
+          <text class="tiny" x="18" y="34">Round 1</text><text class="h3" x="18" y="74" font-size="23">Group A Seed 2</text><text class="tiny" x="18" y="102">vs</text><text class="h3" x="18" y="126" font-size="23">Group D Seed 3</text>
+          <rect class="soft" x="300" width="278" height="138" rx="16" stroke="#d9ddd6"/>
+          <text class="tiny" x="318" y="34">Round 1</text><text class="h3" x="318" y="74" font-size="23">Group D Seed 2</text><text class="tiny" x="318" y="102">vs</text><text class="h3" x="318" y="126" font-size="23">Group A Seed 3</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

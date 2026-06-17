@@ -101,9 +101,9 @@
           "week": 1,
           "player1Id": "p1",
           "player2Id": "p2",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 54,
+          "player2Score": 59,
+          "winnerId": "p1"
         },
         {
           "id": "group-1-w1-m2",
@@ -119,27 +119,27 @@
           "week": 2,
           "player1Id": "p1",
           "player2Id": "p3",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 52,
+          "player2Score": 48,
+          "winnerId": "p3"
         },
         {
           "id": "group-1-w2-m2",
           "week": 2,
           "player1Id": "p2",
           "player2Id": "p4",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 60,
+          "player2Score": 58,
+          "winnerId": "p4"
         },
         {
           "id": "group-1-w3-m1",
           "week": 3,
           "player1Id": "p1",
           "player2Id": "p4",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 77,
+          "player2Score": 51,
+          "winnerId": "p4"
         },
         {
           "id": "group-1-w3-m2",
@@ -185,36 +185,36 @@
           "week": 2,
           "player1Id": "p5",
           "player2Id": "p7",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 57,
+          "player2Score": 53,
+          "winnerId": "p7"
         },
         {
           "id": "group-2-w2-m2",
           "week": 2,
           "player1Id": "p6",
           "player2Id": "p8",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 55,
+          "player2Score": 53,
+          "winnerId": "p8"
         },
         {
           "id": "group-2-w3-m1",
           "week": 3,
           "player1Id": "p5",
           "player2Id": "p8",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 58,
+          "player2Score": 55,
+          "winnerId": "p8"
         },
         {
           "id": "group-2-w3-m2",
           "week": 3,
           "player1Id": "p6",
           "player2Id": "p7",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 60,
+          "player2Score": 54,
+          "winnerId": "p7"
         }
       ]
     },
@@ -233,9 +233,9 @@
           "week": 1,
           "player1Id": "p9",
           "player2Id": "p10",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 51,
+          "player2Score": 59,
+          "winnerId": "p9"
         },
         {
           "id": "group-3-w1-m2",
@@ -260,18 +260,18 @@
           "week": 2,
           "player1Id": "p10",
           "player2Id": "p12",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 62,
+          "player2Score": 54,
+          "winnerId": "p12"
         },
         {
           "id": "group-3-w3-m1",
           "week": 3,
           "player1Id": "p9",
           "player2Id": "p12",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 65,
+          "player2Score": 52,
+          "winnerId": "p12"
         },
         {
           "id": "group-3-w3-m2",
@@ -317,18 +317,18 @@
           "week": 2,
           "player1Id": "p13",
           "player2Id": "p15",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 55,
+          "player2Score": 47,
+          "winnerId": "p15"
         },
         {
           "id": "group-4-w2-m2",
           "week": 2,
           "player1Id": "p14",
           "player2Id": "p16",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 54,
+          "player2Score": 66,
+          "winnerId": "p14"
         },
         {
           "id": "group-4-w3-m1",
@@ -344,9 +344,9 @@
           "week": 3,
           "player1Id": "p14",
           "player2Id": "p15",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 52,
+          "player2Score": 50,
+          "winnerId": "p15"
         }
       ]
     }
@@ -555,7 +555,7 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-12T00:45:22.709Z",
+  "lastUpdated": "2026-06-17T04:23:05.897Z",
   "tournamentId": "disc-golf-world-cup-2026",
   "format": "worldCupTopThree"
 }

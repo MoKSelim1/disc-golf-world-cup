@@ -9,17 +9,17 @@
     {
       "id": "p1",
       "name": "Candace",
-      "country": "TBD"
+      "country": "Scotland"
     },
     {
       "id": "p2",
       "name": "Katlyn ",
-      "country": "TBD"
+      "country": "Italy"
     },
     {
       "id": "p3",
       "name": "Rebecca",
-      "country": "TBD"
+      "country": "USA"
     },
     {
       "id": "p4",
@@ -74,9 +74,9 @@
           "week": 1,
           "player1Id": "p3",
           "player2Id": "p9",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 64,
+          "player2Score": 69,
+          "winnerId": "p3"
         },
         {
           "id": "group-1-w1-m2",
@@ -110,18 +110,18 @@
           "week": 3,
           "player1Id": "p1",
           "player2Id": "p7",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 66,
+          "player2Score": 70,
+          "winnerId": "p1"
         },
         {
           "id": "group-1-w3-m2",
           "week": 3,
           "player1Id": "p9",
           "player2Id": "p5",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 73,
+          "player2Score": 80,
+          "winnerId": "p9"
         },
         {
           "id": "group-1-w4-m1",
@@ -137,18 +137,18 @@
           "week": 4,
           "player1Id": "p7",
           "player2Id": "p3",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 66,
+          "player2Score": 63,
+          "winnerId": "p3"
         },
         {
           "id": "group-1-w5-m1",
           "week": 5,
           "player1Id": "p1",
           "player2Id": "p3",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 70,
+          "player2Score": 60,
+          "winnerId": "p3"
         },
         {
           "id": "group-1-w5-m2",
@@ -177,18 +177,18 @@
           "week": 1,
           "player1Id": "p4",
           "player2Id": "p10",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 65,
+          "player2Score": 67,
+          "winnerId": "p4"
         },
         {
           "id": "group-2-w1-m2",
           "week": 1,
           "player1Id": "p6",
           "player2Id": "p8",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 62,
+          "player2Score": 69,
+          "winnerId": "p6"
         },
         {
           "id": "group-2-w2-m1",
@@ -222,9 +222,9 @@
           "week": 3,
           "player1Id": "p10",
           "player2Id": "p6",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 69,
+          "player2Score": 63,
+          "winnerId": "p6"
         },
         {
           "id": "group-2-w4-m1",
@@ -249,9 +249,9 @@
           "week": 5,
           "player1Id": "p2",
           "player2Id": "p4",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 65,
+          "player2Score": 59,
+          "winnerId": "p4"
         },
         {
           "id": "group-2-w5-m2",
@@ -341,6 +341,34 @@
   ],
   "finalStageMatches": [
     {
+      "id": "final-r1-m0",
+      "roundName": "semifinal",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
+      "id": "final-r1-m1",
+      "roundName": "semifinal",
+      "roundOrder": 1,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
+    },
+    {
       "id": "final-final",
       "roundName": "final",
       "roundOrder": 0,
@@ -353,7 +381,21 @@
       "player1Score": null,
       "player2Score": null,
       "winnerId": null
+    },
+    {
+      "id": "final-3rd",
+      "roundName": "thirdPlace",
+      "roundOrder": 0,
+      "participant1": {
+        "type": "tbd"
+      },
+      "participant2": {
+        "type": "tbd"
+      },
+      "player1Score": null,
+      "player2Score": null,
+      "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-12T00:49:00.582Z"
+  "lastUpdated": "2026-06-17T04:29:50.499Z"
 }

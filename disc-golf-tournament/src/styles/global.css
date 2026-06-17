@@ -447,9 +447,42 @@ button[type='submit'],
 
 .match-grid,
 .admin-match-list,
-.player-editor-list {
+.player-editor-list,
+.pending-match-list {
   display: grid;
   gap: 12px;
+}
+
+.pending-week-list,
+.pending-week {
+  display: grid;
+  gap: 14px;
+}
+
+.pending-week h3 {
+  margin: 0;
+}
+
+.pending-match-list {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.pending-match {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px;
+  background: #f8faf7;
+}
+
+.pending-match span,
+.pending-match em {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .match-card {
@@ -733,5 +766,275 @@ button[type='submit'] {
 
   .dashboard-groups {
     grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-page {
+  gap: 20px;
+}
+
+.dashboard-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  gap: clamp(18px, 4vw, 36px);
+  align-items: stretch;
+  min-height: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+  padding: clamp(24px, 5vw, 56px);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(183, 228, 199, 0.28), transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(201, 146, 42, 0.3), transparent 24%),
+    linear-gradient(135deg, #102f25 0%, #18553f 48%, #1d5a80 100%);
+  box-shadow: 0 24px 60px rgba(16, 47, 37, 0.2);
+  color: white;
+  overflow: hidden;
+}
+
+.dashboard-hero::after {
+  position: absolute;
+  inset: auto -10% -55% 28%;
+  height: 280px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  content: '';
+  transform: rotate(-9deg);
+}
+
+.dashboard-hero__copy,
+.stage-card {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-hero .eyebrow {
+  color: #b7e4c7;
+}
+
+.dashboard-hero h2 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(2.7rem, 8vw, 6.3rem);
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+
+.dashboard-hero p:not(.eyebrow) {
+  max-width: 660px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.stage-card {
+  display: grid;
+  align-content: space-between;
+  gap: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+}
+
+.stage-card__label,
+.stage-card small {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.stage-card strong {
+  font-size: clamp(2.15rem, 5vw, 3.75rem);
+  line-height: 0.94;
+}
+
+.stage-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.stage-timeline__dot {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.stage-timeline__dot--active {
+  background: var(--gold);
+  box-shadow: 0 0 0 5px rgba(201, 146, 42, 0.18);
+}
+
+.stat-grid--dashboard {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-card--progress,
+.stat-card--spotlight {
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 247, 0.94)),
+    var(--panel);
+}
+
+.progress-fill--gold {
+  background: linear-gradient(90deg, var(--gold), #e2bd69);
+}
+
+.progress-fill--blue {
+  background: linear-gradient(90deg, var(--blue), #58a2c9);
+}
+
+.stat-card--spotlight {
+  border-color: rgba(201, 146, 42, 0.45);
+}
+
+.stat-card--spotlight strong {
+  color: var(--green-dark);
+}
+
+.dashboard-control-panel,
+.bracket-preview-panel,
+.group-summary-card--feature {
+  border-radius: 20px;
+}
+
+.group-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.group-filter__button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.68rem 0.95rem;
+  background: #f8faf7;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.group-filter__button--active {
+  border-color: rgba(37, 107, 79, 0.55);
+  background: var(--green);
+  color: white;
+  box-shadow: 0 10px 24px rgba(37, 107, 79, 0.18);
+}
+
+.dashboard-groups--sleek {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.group-summary-card--feature {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.group-card-progress {
+  margin-top: -8px;
+}
+
+.rank-table-heading,
+.rank-item--rich {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 58px 42px 58px;
+  align-items: center;
+  gap: 8px;
+}
+
+.rank-table-heading {
+  padding: 0 0.65rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.rank-item--rich {
+  position: relative;
+  min-height: 50px;
+  border: 1px solid rgba(37, 107, 79, 0.1);
+  background: linear-gradient(90deg, rgba(37, 107, 79, 0.1), rgba(248, 250, 247, 0.95) 42%);
+}
+
+.rank-item--rich.rank-item--out {
+  border-color: rgba(105, 117, 109, 0.16);
+  background: #f1f3ef;
+}
+
+.rank-stat {
+  justify-self: end;
+  font-weight: 900;
+}
+
+.next-match-card {
+  display: grid;
+  gap: 4px;
+  border: 1px dashed rgba(37, 107, 79, 0.35);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(37, 107, 79, 0.06);
+}
+
+.next-match-card span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.next-match-card strong {
+  font-size: 0.96rem;
+}
+
+.matchup-preview--sleek {
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(37, 107, 79, 0.08), transparent 52%),
+    #f8faf7;
+}
+
+@media (max-width: 900px) {
+  .dashboard-hero,
+  .stat-grid--dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-hero__copy {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .dashboard-hero,
+  .stat-grid--dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-hero {
+    min-height: 0;
+    border-radius: 18px;
+  }
+
+  .dashboard-groups--sleek {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .rank-table-heading,
+  .rank-item--rich {
+    grid-template-columns: 34px minmax(0, 1fr) 46px 34px 46px;
+    gap: 6px;
+  }
+
+  .rank-table-heading {
+    font-size: 0.66rem;
   }
 }
