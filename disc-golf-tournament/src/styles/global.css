@@ -447,9 +447,42 @@ button[type='submit'],
 
 .match-grid,
 .admin-match-list,
-.player-editor-list {
+.player-editor-list,
+.pending-match-list {
   display: grid;
   gap: 12px;
+}
+
+.pending-week-list,
+.pending-week {
+  display: grid;
+  gap: 14px;
+}
+
+.pending-week h3 {
+  margin: 0;
+}
+
+.pending-match-list {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.pending-match {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px;
+  background: #f8faf7;
+}
+
+.pending-match span,
+.pending-match em {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .match-card {
