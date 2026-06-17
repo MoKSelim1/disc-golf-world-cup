@@ -453,13 +453,13 @@ button[type='submit'],
   gap: 12px;
 }
 
-.pending-week-list,
-.pending-week {
+.pending-group-list,
+.pending-group {
   display: grid;
   gap: 14px;
 }
 
-.pending-week h3 {
+.pending-group h3 {
   margin: 0;
 }
 
@@ -469,7 +469,7 @@ button[type='submit'],
 
 .pending-match {
   display: grid;
-  gap: 6px;
+  gap: 8px;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 13px;
@@ -483,6 +483,33 @@ button[type='submit'],
   font-style: normal;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.stakes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stakes-chip {
+  width: max-content;
+  border: 1px solid rgba(37, 107, 79, 0.24);
+  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+  background: rgba(37, 107, 79, 0.08);
+  color: var(--green-dark);
+}
+
+.stakes-chip--gold {
+  border-color: rgba(201, 146, 42, 0.42);
+  background: rgba(201, 146, 42, 0.14);
+  color: #7a5516;
+}
+
+.stakes-chip--danger {
+  border-color: rgba(155, 61, 46, 0.36);
+  background: rgba(155, 61, 46, 0.1);
+  color: var(--danger);
 }
 
 .match-card {

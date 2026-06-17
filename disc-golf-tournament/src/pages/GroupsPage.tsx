@@ -44,10 +44,10 @@ export function GroupsPage() {
               </table>
             </div>
             <div className="match-grid">
-              {group.matches.map((match) => (
+              {group.matches.map((match, index) => (
                 <MatchCard
                   key={match.id}
-                  eyebrow={`Week ${match.week}`}
+                  eyebrow={`Match ${index + 1}`}
                   title={match.id.toUpperCase()}
                   player1={formatPlayer(getPlayer(data.players, match.player1Id))}
                   player2={formatPlayer(getPlayer(data.players, match.player2Id))}

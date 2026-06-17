@@ -17,11 +17,11 @@ export function GroupScoreEntry() {
       </div>
       <div className="admin-match-list">
         {data.groups.flatMap((group) =>
-          group.matches.map((match) => (
+          group.matches.map((match, index) => (
             <article className="subpanel" key={match.id}>
               <div className="panel-heading">
                 <h3>
-                  {group.name} - Week {match.week}
+                  {group.name} - Match {index + 1}
                 </h3>
                 <span>{match.id}</span>
               </div>

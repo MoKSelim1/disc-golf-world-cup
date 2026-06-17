@@ -10,7 +10,7 @@ Each player represents a selected country or team name.
 ### Group Stage
 Groups play a round robin at North Park from short pads.
 
-Week labels identify the planned matchups only; group-stage matches may be played in any order.
+Match labels identify the planned pairings only; group-stage matches may be played in any order.
 
 Standings are ordered by match wins, then lower aggregate score.
 
@@ -30,7 +30,7 @@ Each player represents a selected country or team name.
 ### Group Stage
 Two groups of five play a round robin at North Park from short pads.
 
-Week labels identify the planned matchups only; group-stage matches may be played in any order.
+Match labels identify the planned pairings only; group-stage matches may be played in any order.
 
 Standings are ordered by match wins, then lower aggregate score.
 
@@ -52,7 +52,7 @@ Each player represents a selected country or team name.
 ### Group Stage
 Groups play a round robin at North Park from short pads.
 
-Week labels identify the planned matchups only; group-stage matches may be played in any order.
+Match labels identify the planned pairings only; group-stage matches may be played in any order.
 
 Standings are ordered by match wins, then lower aggregate score.
 

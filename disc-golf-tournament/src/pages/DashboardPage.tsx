@@ -50,7 +50,8 @@ function stageForTournament(data: TournamentData): DashboardStage {
 }
 
 function nextGroupMatch(group: Group) {
-  return group.matches.find((match) => !match.winnerId) ?? null;
+  const index = group.matches.findIndex((match) => !match.winnerId);
+  return index >= 0 ? { match: group.matches[index], number: index + 1 } : null;
 }
 
 export function DashboardPage() {
@@ -169,7 +170,7 @@ export function DashboardPage() {
         </article>
       </section>
 
-      <RemainingGroupGames />
+      <RemainingGroupGames hideWhenEmpty />
 
       <section className="panel dashboard-control-panel">
         <div className="panel-heading">
@@ -241,11 +242,11 @@ export function DashboardPage() {
                 ))}
               </div>
               <div className="next-match-card">
-                <span>{nextMatch ? `Next up · Week ${nextMatch.week}` : 'Group complete'}</span>
+                <span>{nextMatch ? `Next match · Match ${nextMatch.number}` : 'Group complete'}</span>
                 <strong>
                   {nextMatch
-                    ? `${formatPlayer(getPlayer(data.players, nextMatch.player1Id))} vs ${formatPlayer(
-                        getPlayer(data.players, nextMatch.player2Id),
+                    ? `${formatPlayer(getPlayer(data.players, nextMatch.match.player1Id))} vs ${formatPlayer(
+                        getPlayer(data.players, nextMatch.match.player2Id),
                       )}`
                     : 'All scorecards are posted'}
                 </strong>
