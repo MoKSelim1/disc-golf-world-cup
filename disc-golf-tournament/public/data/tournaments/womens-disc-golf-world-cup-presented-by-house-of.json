@@ -204,9 +204,9 @@
           "week": 2,
           "player1Id": "p4",
           "player2Id": "p6",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 59,
+          "player2Score": 61,
+          "winnerId": "p4"
         },
         {
           "id": "group-2-w3-m1",
@@ -341,34 +341,6 @@
   ],
   "finalStageMatches": [
     {
-      "id": "final-r1-m0",
-      "roundName": "semifinal",
-      "roundOrder": 0,
-      "participant1": {
-        "type": "tbd"
-      },
-      "participant2": {
-        "type": "tbd"
-      },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
-    },
-    {
-      "id": "final-r1-m1",
-      "roundName": "semifinal",
-      "roundOrder": 1,
-      "participant1": {
-        "type": "tbd"
-      },
-      "participant2": {
-        "type": "tbd"
-      },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
-    },
-    {
       "id": "final-final",
       "roundName": "final",
       "roundOrder": 0,
@@ -381,21 +353,7 @@
       "player1Score": null,
       "player2Score": null,
       "winnerId": null
-    },
-    {
-      "id": "final-3rd",
-      "roundName": "thirdPlace",
-      "roundOrder": 0,
-      "participant1": {
-        "type": "tbd"
-      },
-      "participant2": {
-        "type": "tbd"
-      },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-17T04:29:50.499Z"
+  "lastUpdated": "2026-06-21T00:44:02.580Z"
 }
