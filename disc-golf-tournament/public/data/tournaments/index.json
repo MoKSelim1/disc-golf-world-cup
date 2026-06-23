@@ -9,7 +9,7 @@
       "dataPath": "data/tournament.json",
       "format": "worldCupTopThree",
       "playerCount": 16,
-      "lastUpdated": "2026-06-21T19:27:30.653Z"
+      "lastUpdated": "2026-06-23T16:07:49.971Z"
     },
     {
       "id": "womens-disc-golf-world-cup-presented-by-house-of",
@@ -21,5 +21,5 @@
       "lastUpdated": "2026-06-21T00:44:02.580Z"
     }
   ],
-  "lastUpdated": "2026-06-21T19:27:30.653Z"
+  "lastUpdated": "2026-06-23T16:07:49.971Z"
 }
