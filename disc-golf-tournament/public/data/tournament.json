@@ -110,9 +110,9 @@
           "week": 1,
           "player1Id": "p3",
           "player2Id": "p4",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 53,
+          "player2Score": 54,
+          "winnerId": "p3"
         },
         {
           "id": "group-1-w2-m1",
@@ -555,7 +555,7 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-23T16:07:49.971Z",
+  "lastUpdated": "2026-06-24T02:32:50.115Z",
   "tournamentId": "disc-golf-world-cup-2026",
   "format": "worldCupTopThree"
 }
