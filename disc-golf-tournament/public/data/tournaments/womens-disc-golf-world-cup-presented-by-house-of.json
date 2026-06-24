@@ -101,9 +101,9 @@
           "week": 2,
           "player1Id": "p3",
           "player2Id": "p5",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 55,
+          "player2Score": 76,
+          "winnerId": "p3"
         },
         {
           "id": "group-1-w3-m1",
@@ -155,9 +155,9 @@
           "week": 5,
           "player1Id": "p7",
           "player2Id": "p9",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 69,
+          "player2Score": 66,
+          "winnerId": "p9"
         }
       ]
     },
@@ -240,9 +240,9 @@
           "week": 4,
           "player1Id": "p8",
           "player2Id": "p4",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 61,
+          "player2Score": 60,
+          "winnerId": "p4"
         },
         {
           "id": "group-2-w5-m1",
@@ -355,5 +355,5 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-21T00:44:02.580Z"
+  "lastUpdated": "2026-06-24T02:53:13.029Z"
 }
