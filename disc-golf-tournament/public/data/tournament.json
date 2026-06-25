@@ -396,14 +396,12 @@
       "podIndex": 1,
       "label": "A",
       "participant1": {
-        "type": "groupSeed",
-        "groupId": "group-2",
-        "seed": 2
+        "type": "player",
+        "playerId": "p8"
       },
       "participant2": {
-        "type": "groupSeed",
-        "groupId": "group-3",
-        "seed": 3
+        "type": "player",
+        "playerId": "p9"
       },
       "player1Score": 49,
       "player2Score": 56,
@@ -415,14 +413,12 @@
       "podIndex": 1,
       "label": "B",
       "participant1": {
-        "type": "groupSeed",
-        "groupId": "group-3",
-        "seed": 2
+        "type": "player",
+        "playerId": "p12"
       },
       "participant2": {
-        "type": "groupSeed",
-        "groupId": "group-2",
-        "seed": 3
+        "type": "player",
+        "playerId": "p5"
       },
       "player1Score": 52,
       "player2Score": 56,
