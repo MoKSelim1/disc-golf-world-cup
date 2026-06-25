@@ -43,16 +43,19 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
   }
 
   for (let podIndex = 0; podIndex < numPods; podIndex += 1) {
-    const nextPod = (podIndex + 1) % numPods;
-    const rightIndex = groups.length - 1 - podIndex;
+    const leftIndex = podIndex;
 
+    // Keep the completed Round 1 weak-group pairings intact, but route each
+    // qualifier winner to the corrected group-winner path for the next round.
+    // With four groups this yields: A vs Match 1, B vs Match 3,
+    // C vs Match 2, and D vs Match 4.
     matches.push({
       id: `ko-r2-pod${podIndex}-seed1`,
       round: 2,
       podIndex,
       label: 'seed1',
-      participant1: groupRef(groups, podIndex, 1),
-      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${nextPod}-a` },
+      participant1: groupRef(groups, leftIndex, 1),
+      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${podIndex}-a` },
       player1Score: null,
       player2Score: null,
       winnerId: null,
@@ -63,8 +66,8 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
       round: 2,
       podIndex,
       label: 'seed2',
-      participant1: groupRef(groups, rightIndex, 1),
-      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${nextPod}-b` },
+      participant1: groupRef(groups, podIndex * 2 + 1, 1),
+      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${numPods - 1 - podIndex}-b` },
       player1Score: null,
       player2Score: null,
       winnerId: null,

@@ -439,7 +439,7 @@
       },
       "participant2": {
         "type": "matchWinner",
-        "matchId": "ko-r1-pod1-a"
+        "matchId": "ko-r1-pod0-a"
       },
       "player1Score": null,
       "player2Score": null,
@@ -452,7 +452,7 @@
       "label": "seed2",
       "participant1": {
         "type": "groupWinner",
-        "groupId": "group-4"
+        "groupId": "group-2"
       },
       "participant2": {
         "type": "matchWinner",
@@ -469,11 +469,11 @@
       "label": "seed1",
       "participant1": {
         "type": "groupWinner",
-        "groupId": "group-2"
+        "groupId": "group-3"
       },
       "participant2": {
         "type": "matchWinner",
-        "matchId": "ko-r1-pod0-a"
+        "matchId": "ko-r1-pod1-a"
       },
       "player1Score": null,
       "player2Score": null,
@@ -486,7 +486,7 @@
       "label": "seed2",
       "participant1": {
         "type": "groupWinner",
-        "groupId": "group-3"
+        "groupId": "group-4"
       },
       "participant2": {
         "type": "matchWinner",
