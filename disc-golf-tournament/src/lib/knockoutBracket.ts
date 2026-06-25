@@ -51,8 +51,6 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
   }
 
   for (let podIndex = 0; podIndex < numPods; podIndex += 1) {
-    const leftIndex = podIndex;
-
     // Keep the completed Round 1 weak-group pairings intact, but route each
     // qualifier winner to the corrected group-winner path for the next round.
     // With four groups this yields: A vs Match 1, B vs Match 3,
