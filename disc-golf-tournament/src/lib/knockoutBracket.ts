@@ -60,7 +60,7 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
       round: 2,
       podIndex,
       label: 'seed1',
-      participant1: groupRef(groups, podIndex * 2, 1),
+      participant1: groupRef(groups, leftIndex, 1),
       participant2: { type: 'matchWinner', matchId: `ko-r1-pod${podIndex}-a` },
       player1Score: null,
       player2Score: null,
