@@ -9,6 +9,14 @@ function groupRef(groups: Group[], index: number, seed: 1 | 2 | 3): ParticipantR
     : { type: 'groupSeed', groupId: group.id, seed };
 }
 
+function playerRef(playerId: PlayerId | null): ParticipantRef {
+  return playerId ? { type: 'player', playerId } : { type: 'tbd' };
+}
+
+function hasScores(match: KnockoutMatch): boolean {
+  return match.player1Score !== null && match.player2Score !== null;
+}
+
 export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
   const numPods = groups.length / 2;
   const matches: KnockoutMatch[] = [];
@@ -43,16 +51,17 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
   }
 
   for (let podIndex = 0; podIndex < numPods; podIndex += 1) {
-    const nextPod = (podIndex + 1) % numPods;
-    const rightIndex = groups.length - 1 - podIndex;
-
+    // Keep the completed Round 1 weak-group pairings intact, but route each
+    // qualifier winner to the corrected group-winner path for the next round.
+    // With four groups this yields: A vs Match 1, B vs Match 3,
+    // C vs Match 2, and D vs Match 4.
     matches.push({
       id: `ko-r2-pod${podIndex}-seed1`,
       round: 2,
       podIndex,
       label: 'seed1',
-      participant1: groupRef(groups, podIndex, 1),
-      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${nextPod}-a` },
+      participant1: groupRef(groups, podIndex * 2, 1),
+      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${podIndex}-a` },
       player1Score: null,
       player2Score: null,
       winnerId: null,
@@ -63,8 +72,8 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
       round: 2,
       podIndex,
       label: 'seed2',
-      participant1: groupRef(groups, rightIndex, 1),
-      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${nextPod}-b` },
+      participant1: groupRef(groups, podIndex * 2 + 1, 1),
+      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${numPods - 1 - podIndex}-b` },
       player1Score: null,
       player2Score: null,
       winnerId: null,
@@ -104,6 +113,23 @@ export function recomputeKnockoutMatches(
     const previous = existingMatches.find((candidate) => candidate.id === match.id);
     const player1Score = previous?.player1Score ?? null;
     const player2Score = previous?.player2Score ?? null;
+
+    if (previous && previous.round === 1 && hasScores(previous)) {
+      const previousPlayer1Id = resolveParticipant(previous.participant1, groups, existingMatches);
+      const previousPlayer2Id = resolveParticipant(previous.participant2, groups, existingMatches);
+
+      recomputed.push({
+        ...previous,
+        participant1: playerRef(previousPlayer1Id),
+        participant2: playerRef(previousPlayer2Id),
+        winnerId:
+          previousPlayer1Id && previousPlayer2Id
+            ? scoreWinner(previousPlayer1Id, previousPlayer2Id, player1Score, player2Score)
+            : previous.winnerId,
+      });
+      return;
+    }
+
     const player1Id = resolveParticipant(match.participant1, groups, recomputed);
     const player2Id = resolveParticipant(match.participant2, groups, recomputed);
 
