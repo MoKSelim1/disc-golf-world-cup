@@ -4,6 +4,7 @@ import { TournamentSwitcher } from './TournamentSwitcher';
 const views: Array<{ id: ViewName; label: string }> = [
   { id: 'dashboard', label: 'Dashboard' },
   { id: 'groups', label: 'Groups' },
+  { id: 'fullBracket', label: 'Full Bracket' },
   { id: 'knockout', label: 'Knockout' },
   { id: 'finals', label: 'Finals' },
   { id: 'payout', label: 'Payout' },
