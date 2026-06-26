@@ -17,7 +17,18 @@ function hasScores(match: KnockoutMatch): boolean {
   return match.player1Score !== null && match.player2Score !== null;
 }
 
-export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
+export interface KnockoutBracketOptions {
+  // With two pods, each pod's round-1 "a"/"b" qualifiers normally feed their
+  // own pod's seed1 slot and the other pod's seed2 slot. This swaps those two
+  // destinations so round 2 pairs each group's seed1 against its own seed2's
+  // qualifier path, instead of crossing pods.
+  swapRoundTwoFeeds?: boolean;
+}
+
+export function generateKnockoutMatches(
+  groups: Group[],
+  options: KnockoutBracketOptions = {},
+): KnockoutMatch[] {
   const numPods = groups.length / 2;
   const matches: KnockoutMatch[] = [];
 
@@ -50,18 +61,28 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
     });
   }
 
+  const swap = Boolean(options.swapRoundTwoFeeds) && numPods === 2;
+
   for (let podIndex = 0; podIndex < numPods; podIndex += 1) {
     // Keep the completed Round 1 weak-group pairings intact, but route each
     // qualifier winner to the corrected group-winner path for the next round.
     // With four groups this yields: A vs Match 1, B vs Match 3,
-    // C vs Match 2, and D vs Match 4.
+    // C vs Match 2, and D vs Match 4. When `swap` is set, pod 1's "a" and "b"
+    // qualifiers trade destinations so each pod's seed1 faces its own pod's
+    // seed2 qualifier path instead of crossing into the other pod.
+    const seed1MatchId = swap && podIndex === 1 ? `ko-r1-pod${podIndex}-b` : `ko-r1-pod${podIndex}-a`;
+    const seed2MatchId =
+      swap && podIndex === 0
+        ? `ko-r1-pod${numPods - 1 - podIndex}-a`
+        : `ko-r1-pod${numPods - 1 - podIndex}-b`;
+
     matches.push({
       id: `ko-r2-pod${podIndex}-seed1`,
       round: 2,
       podIndex,
       label: 'seed1',
       participant1: groupRef(groups, podIndex * 2, 1),
-      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${podIndex}-a` },
+      participant2: { type: 'matchWinner', matchId: seed1MatchId },
       player1Score: null,
       player2Score: null,
       winnerId: null,
@@ -73,7 +94,7 @@ export function generateKnockoutMatches(groups: Group[]): KnockoutMatch[] {
       podIndex,
       label: 'seed2',
       participant1: groupRef(groups, podIndex * 2 + 1, 1),
-      participant2: { type: 'matchWinner', matchId: `ko-r1-pod${numPods - 1 - podIndex}-b` },
+      participant2: { type: 'matchWinner', matchId: seed2MatchId },
       player1Score: null,
       player2Score: null,
       winnerId: null,
@@ -105,8 +126,9 @@ export function resolveParticipant(
 export function recomputeKnockoutMatches(
   groups: Group[],
   existingMatches: KnockoutMatch[],
+  options: KnockoutBracketOptions = {},
 ): KnockoutMatch[] {
-  const skeleton = generateKnockoutMatches(groups);
+  const skeleton = generateKnockoutMatches(groups, options);
   const recomputed: KnockoutMatch[] = [];
 
   skeleton.forEach((match) => {

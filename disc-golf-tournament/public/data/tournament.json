@@ -452,7 +452,7 @@
       },
       "participant2": {
         "type": "matchWinner",
-        "matchId": "ko-r1-pod1-b"
+        "matchId": "ko-r1-pod1-a"
       },
       "player1Score": null,
       "player2Score": null,
@@ -469,7 +469,7 @@
       },
       "participant2": {
         "type": "matchWinner",
-        "matchId": "ko-r1-pod1-a"
+        "matchId": "ko-r1-pod1-b"
       },
       "player1Score": null,
       "player2Score": null,

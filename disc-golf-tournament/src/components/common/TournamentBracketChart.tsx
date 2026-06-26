@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type {
   FinalRoundName,
   FinalStageMatch,
@@ -36,6 +37,11 @@ const groupBoxGap = 26;
 
 // Vertical rhythm for the knockout/final nodes when spread across the full height.
 const minMatchGap = 26;
+
+// ---- Zoom ----
+const zoomMin = 0.4;
+const zoomMax = 1;
+const zoomStep = 0.1;
 
 const finalRoundSequence: FinalRoundName[] = ['roundOf16', 'quarterfinal', 'semifinal', 'final'];
 
@@ -207,6 +213,7 @@ function BracketMatchNode({ displayMatch, data }: { displayMatch: DisplayMatch; 
 
 export function TournamentBracketChart() {
   const { data } = useTournament();
+  const [zoom, setZoom] = useState(1);
   const hasPlayIn = data.knockoutMatches.length > 0;
   const advancing = advancingPerGroup(data);
   const columns = buildMatchColumns(data, hasPlayIn);
@@ -421,69 +428,89 @@ export function TournamentBracketChart() {
   if (knockoutCols > 0) phaseHeaders.push({ label: 'Knockout Stage', startSlot: 1, span: knockoutCols });
   if (finalCols > 0) phaseHeaders.push({ label: finalPhaseLabel, startSlot: 1 + knockoutCols, span: finalCols });
 
+  const zoomOut = () => setZoom((value) => Math.max(zoomMin, Math.round((value - zoomStep) * 100) / 100));
+  const zoomIn = () => setZoom((value) => Math.min(zoomMax, Math.round((value + zoomStep) * 100) / 100));
+
   return (
     <section className="full-bracket-shell" aria-label="Tournament bracket">
-      <div className="full-bracket-canvas" style={{ width: boardWidth, height: boardHeight }}>
-        <svg
-          className="full-bracket-lines bracket-chart-lines"
-          height={boardHeight}
-          viewBox={`0 0 ${boardWidth} ${boardHeight}`}
-          width={boardWidth}
+      <div className="full-bracket-zoom-controls">
+        <button disabled={zoom <= zoomMin} onClick={zoomOut} type="button">
+          Zoom out
+        </button>
+        <span className="full-bracket-zoom-level">{Math.round(zoom * 100)}%</span>
+        <button disabled={zoom >= zoomMax} onClick={zoomIn} type="button">
+          Zoom in
+        </button>
+        <button disabled={zoom === 1} onClick={() => setZoom(1)} type="button">
+          Reset
+        </button>
+      </div>
+      <div className="full-bracket-zoom-frame" style={{ width: boardWidth * zoom, height: boardHeight * zoom }}>
+        <div
+          className="full-bracket-canvas"
+          style={{ width: boardWidth, height: boardHeight, transform: `scale(${zoom})` }}
         >
-          {paths.map((d, index) => (
-            <path d={d} key={index} />
-          ))}
-        </svg>
-
-        {phaseHeaders.map((header) => (
-          <div
-            className="tournament-bracket-phase-header"
-            key={header.label}
-            style={{ left: slotLeft(header.startSlot), width: header.span * matchWidth + Math.max(0, header.span - 1) * columnGap }}
+          <svg
+            className="full-bracket-lines bracket-chart-lines"
+            height={boardHeight}
+            viewBox={`0 0 ${boardWidth} ${boardHeight}`}
+            width={boardWidth}
           >
-            {header.label}
-          </div>
-        ))}
+            {paths.map((d, index) => (
+              <path d={d} key={index} />
+            ))}
+          </svg>
 
-        {columns.map((column, columnIndex) => (
-          <div
-            className="full-bracket-column-title"
-            key={column.id}
-            style={{ left: slotLeft(columnIndex + 1), top: columnTitleTop, width: matchWidth }}
-          >
-            {column.title}
-          </div>
-        ))}
-
-        {groupBoxes.map((box) => (
-          <div className="group-stage-box" key={box.group.id} style={{ left: 0, top: box.top, width: matchWidth }}>
-            <div className="group-stage-box__header">{box.group.name}</div>
-            {box.rows.map((row) => {
-              const showBye = hasPlayIn && row.rank === 1;
-              const isEliminated = row.rank > advancing;
-              return (
-                <div className="group-stage-row" key={row.rank}>
-                  <span className="group-stage-rank">{row.rank}</span>
-                  <span className="group-stage-name">{row.player?.name ?? 'TBD'}</span>
-                  {showBye ? <span className="group-stage-bye-badge">Bye</span> : null}
-                  {isEliminated ? <span className="group-stage-eliminated-tag">Eliminated</span> : null}
-                </div>
-              );
-            })}
-          </div>
-        ))}
-
-        {columns.map((column, columnIndex) =>
-          column.matches.map((displayMatch) => (
+          {phaseHeaders.map((header) => (
             <div
-              className="full-bracket-node-wrap"
-              key={displayMatch.id}
-              style={{ left: slotLeft(columnIndex + 1), top: nodeTop.get(displayMatch.id) ?? topPad, width: matchWidth }}
+              className="tournament-bracket-phase-header"
+              key={header.label}
+              style={{ left: slotLeft(header.startSlot), width: header.span * matchWidth + Math.max(0, header.span - 1) * columnGap }}
             >
-              <BracketMatchNode data={data} displayMatch={displayMatch} />
+              {header.label}
             </div>
-          )),
-        )}
+          ))}
+
+          {columns.map((column, columnIndex) => (
+            <div
+              className="full-bracket-column-title"
+              key={column.id}
+              style={{ left: slotLeft(columnIndex + 1), top: columnTitleTop, width: matchWidth }}
+            >
+              {column.title}
+            </div>
+          ))}
+
+          {groupBoxes.map((box) => (
+            <div className="group-stage-box" key={box.group.id} style={{ left: 0, top: box.top, width: matchWidth }}>
+              <div className="group-stage-box__header">{box.group.name}</div>
+              {box.rows.map((row) => {
+                const showBye = hasPlayIn && row.rank === 1;
+                const isEliminated = row.rank > advancing;
+                return (
+                  <div className="group-stage-row" key={row.rank}>
+                    <span className="group-stage-rank">{row.rank}</span>
+                    <span className="group-stage-name">{row.player?.name ?? 'TBD'}</span>
+                    {showBye ? <span className="group-stage-bye-badge">Bye</span> : null}
+                    {isEliminated ? <span className="group-stage-eliminated-tag">Eliminated</span> : null}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+
+          {columns.map((column, columnIndex) =>
+            column.matches.map((displayMatch) => (
+              <div
+                className="full-bracket-node-wrap"
+                key={displayMatch.id}
+                style={{ left: slotLeft(columnIndex + 1), top: nodeTop.get(displayMatch.id) ?? topPad, width: matchWidth }}
+              >
+                <BracketMatchNode data={data} displayMatch={displayMatch} />
+              </div>
+            )),
+          )}
+        </div>
       </div>
     </section>
   );

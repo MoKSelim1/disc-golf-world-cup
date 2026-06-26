@@ -3,6 +3,14 @@ import { generateGroupSchedule, scoreWinner } from './groupStandings';
 import { getSeedFromGroup } from './groupStandings';
 import { getKnockoutRoundTwoWinners, recomputeKnockoutMatches } from './knockoutBracket';
 import { recomputeFinalStageMatches } from './finalStage';
+import { LEGACY_TOURNAMENT_ID } from './tournamentCatalog';
+
+// The round-2 knockout pairing realignment (group runners-up rematched
+// against their own pod instead of crossing into the other pod) is a
+// men's-bracket-only rule change; other tournaments keep the original feeds.
+export function isMensTournament(data: TournamentData): boolean {
+  return (data.tournamentId ?? LEGACY_TOURNAMENT_ID) === LEGACY_TOURNAMENT_ID;
+}
 
 export function createGroups(playerIds: string[], numGroups: number): Group[] {
   const groups = Array.from({ length: numGroups }, () => [] as PlayerId[]);
@@ -53,7 +61,9 @@ export function recomputeTournament(data: TournamentData): TournamentData {
 
   const format = tournamentFormat(data);
   const usesKnockoutPlayIn = format === 'worldCupTopThree' || hasTenPlayerPlayIn({ ...data, groups });
-  const knockoutMatches = usesKnockoutPlayIn ? recomputeKnockoutMatches(groups, data.knockoutMatches) : [];
+  const knockoutMatches = usesKnockoutPlayIn
+    ? recomputeKnockoutMatches(groups, data.knockoutMatches, { swapRoundTwoFeeds: isMensTournament(data) })
+    : [];
   const finalEntrants = usesKnockoutPlayIn ? getKnockoutRoundTwoWinners(knockoutMatches) : groupSeedEntrants(groups, 2);
   const expectedFinalEntrants = usesKnockoutPlayIn
     ? knockoutMatches.filter((match) => match.round === 2).length
