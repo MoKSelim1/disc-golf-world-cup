@@ -699,6 +699,97 @@ button[type='submit'],
   margin-top: 18px;
 }
 
+/* ---- Tournament bracket chart (group stage + knockout + final four) ---- */
+.bracket-chart-lines path {
+  stroke: rgba(242, 243, 237, 0.5);
+  stroke-width: 2;
+}
+
+.tournament-bracket-phase-header {
+  position: absolute;
+  top: 0;
+  color: rgba(242, 243, 237, 0.92);
+  font-size: 0.92rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.group-stage-box {
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 7px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+}
+
+.group-stage-box__header {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  background: #3a3d3b;
+  color: rgba(242, 243, 237, 0.92);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.group-stage-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding-right: 10px;
+  background: #626561;
+  color: white;
+  border-top: 2px solid rgba(37, 39, 38, 0.7);
+}
+
+.group-stage-rank {
+  display: grid;
+  align-self: stretch;
+  place-items: center;
+  background: #a5a8a3;
+  color: #202721;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.group-stage-name {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group-stage-bye-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f47d3b;
+  color: #202721;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.group-stage-eliminated-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(242, 243, 237, 0.62);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
 .score-editor {
   display: grid;
   grid-template-columns: 1fr 1fr auto;

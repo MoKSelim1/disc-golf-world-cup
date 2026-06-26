@@ -1,4 +1,4 @@
-import { FullBracket } from '../components/common/FullBracket';
+import { TournamentBracketChart } from '../components/common/TournamentBracketChart';
 
 export function FullBracketPage() {
   return (
@@ -8,9 +8,9 @@ export function FullBracketPage() {
           <p className="eyebrow">Tournament path</p>
           <h2>Full Bracket</h2>
         </div>
-        <span>Knockout paths, final bracket, and third-place match in one view.</span>
+        <span>Group stage, knockout paths, and the final four in one view.</span>
       </div>
-      <FullBracket />
+      <TournamentBracketChart />
     </section>
   );
 }
