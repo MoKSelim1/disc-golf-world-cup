@@ -64,7 +64,9 @@ export function recomputeTournament(data: TournamentData): TournamentData {
   const knockoutMatches = usesKnockoutPlayIn
     ? recomputeKnockoutMatches(groups, data.knockoutMatches, { swapRoundTwoFeeds: isMensTournament(data) })
     : [];
-  const finalEntrants = usesKnockoutPlayIn ? getKnockoutRoundTwoWinners(knockoutMatches) : groupSeedEntrants(groups, 2);
+  const finalEntrants = usesKnockoutPlayIn
+    ? getKnockoutRoundTwoWinners(knockoutMatches, { crossPodSemis: isMensTournament(data) })
+    : groupSeedEntrants(groups, 2);
   const expectedFinalEntrants = usesKnockoutPlayIn
     ? knockoutMatches.filter((match) => match.round === 2).length
     : groups.length * 2;

@@ -11,8 +11,8 @@ import type {
 } from '../../types/tournament';
 import { useTournament } from '../../context/TournamentContext';
 import { computeGroupStandings } from '../../lib/groupStandings';
-import { generateKnockoutMatches } from '../../lib/knockoutBracket';
-import { advancingPerGroup } from '../../lib/tournament';
+import { generateKnockoutMatches, orderRoundTwoMatches } from '../../lib/knockoutBracket';
+import { advancingPerGroup, isMensTournament } from '../../lib/tournament';
 import {
   finalMatchTitle,
   finalRoundTitle,
@@ -146,7 +146,7 @@ function buildMatchColumns(data: TournamentData, hasPlayIn: boolean): MatchColum
 
   if (hasPlayIn) {
     const roundOne = data.knockoutMatches.filter((match) => match.round === 1).sort(knockoutSort);
-    const roundTwo = data.knockoutMatches.filter((match) => match.round === 2).sort(knockoutSort);
+    const roundTwo = orderRoundTwoMatches(data.knockoutMatches, { crossPodSemis: isMensTournament(data) });
     if (roundOne.length > 0) {
       columns.push({
         id: 'knockout-1',
@@ -243,33 +243,56 @@ export function TournamentBracketChart() {
   const centerOf = (id: string): number => (nodeTop.get(id) ?? topPad) + matchHeight / 2;
 
   const roundOne = data.knockoutMatches.filter((match) => match.round === 1).sort(knockoutSort);
-  const roundTwo = data.knockoutMatches.filter((match) => match.round === 2).sort(knockoutSort);
+  const playInBlueprint = generateKnockoutMatches(data.groups).filter((match) => match.round === 1);
+  const minNodeGap = matchHeight + minMatchGap;
 
-  // Knockout Round 1 and Round 2 share one even vertical spread across the full
-  // height. Because each Round-1 match and the Round-2 match it feeds land on the
-  // same slot index, the non-crossing carries are exactly horizontal.
+  // Each Round-1 match's primary (rank-2) feeder always lands at that group's
+  // row, so snapping the node to that row's centre makes the group -> Round-1
+  // line exactly horizontal. The clamp keeps nodes from overlapping when two
+  // rows land close together.
+  const r1PrimaryRowY = new Map<string, number>();
+  playInBlueprint.forEach((match) => {
+    const ref = match.participant1;
+    if (ref.type !== 'groupSeed') return;
+    const y = groupRowCenter(ref.groupId, ref.seed);
+    if (y !== null) r1PrimaryRowY.set(match.id, y);
+  });
+
   const knockoutSpan = Math.max(0, groupSpanBottom - groupSpanTop);
   if (hasPlayIn && roundOne.length > 0) {
+    let previousCenter = -Infinity;
     roundOne.forEach((match, index) => {
-      setCenter(match.id, groupSpanTop + (knockoutSpan * (index + 0.5)) / roundOne.length);
+      const evenSpread = groupSpanTop + (knockoutSpan * (index + 0.5)) / roundOne.length;
+      const primaryRowY = r1PrimaryRowY.get(match.id);
+      const center = Math.max(primaryRowY ?? evenSpread, previousCenter + minNodeGap);
+      setCenter(match.id, center);
+      previousCenter = center;
     });
   }
 
   const finalColumns = columns.filter((column) => column.id.startsWith('final-'));
-  // Entrant order feeding the first final round (bracket order).
-  const r2EntrantOrder = [...roundTwo].sort((a, b) => (a.podIndex - b.podIndex) || (a.label === 'seed1' ? -1 : 1));
+  // Entrant order feeding the first final round (bracket order); shared with the
+  // column display order so the chart and the real final-stage pairing match.
+  const roundTwoUnordered = data.knockoutMatches.filter((match) => match.round === 2);
+  const r2EntrantOrder = orderRoundTwoMatches(roundTwoUnordered, { crossPodSemis: isMensTournament(data) });
   const groupSeedEntrants: Array<{ groupId: string; rank: number }> = data.groups.flatMap((group) =>
     [1, 2].map((rank) => ({ groupId: group.id, rank })),
   );
 
-  // Knockout Round 2: spread evenly in bracket order so the final bracket
-  // downstream (R2 -> semifinal -> final) converges cleanly. The single
-  // unavoidable play-in crossing is carried by the Round 1 -> Round 2 lines,
-  // which the staggered channels below keep separated and traceable.
-  if (hasPlayIn && roundTwo.length > 0) {
+  // Knockout Round 2: snap each node to its own Round-1 feeder's centre so the
+  // Round 1 -> Round 2 line is exactly horizontal, falling back to an even
+  // spread for matches with no single-match feeder. The clamp preserves
+  // bracket display order when feeders land close together.
+  if (hasPlayIn && r2EntrantOrder.length > 0) {
     const span = Math.max(0, groupSpanBottom - groupSpanTop);
+    let previousCenter = -Infinity;
     r2EntrantOrder.forEach((match, index) => {
-      setCenter(match.id, groupSpanTop + (span * (index + 0.5)) / r2EntrantOrder.length);
+      const evenSpread = groupSpanTop + (span * (index + 0.5)) / r2EntrantOrder.length;
+      const feeder = [match.participant1, match.participant2].find((ref) => ref.type === 'matchWinner');
+      const feederCenter = feeder && feeder.type === 'matchWinner' ? centerOf(feeder.matchId) : undefined;
+      const center = Math.max(feederCenter ?? evenSpread, previousCenter + minNodeGap);
+      setCenter(match.id, center);
+      previousCenter = center;
     });
   }
 
@@ -353,9 +376,8 @@ export function TournamentBracketChart() {
   if (hasPlayIn) {
     // Group play-in seeds -> Round 1 (mapped from the stable blueprint so the
     // lines survive once Round-1 refs freeze to concrete players).
-    const blueprint = generateKnockoutMatches(data.groups).filter((match) => match.round === 1);
     const seedToR1 = new Map<string, string>();
-    blueprint.forEach((match) => {
+    playInBlueprint.forEach((match) => {
       [match.participant1, match.participant2].forEach((ref) => {
         if (ref.type === 'groupSeed') seedToR1.set(`${ref.groupId}:${ref.seed}`, match.id);
       });
@@ -368,7 +390,7 @@ export function TournamentBracketChart() {
     });
 
     // Round 1 -> Round 2
-    roundTwo.forEach((match) => {
+    r2EntrantOrder.forEach((match) => {
       const feeder = [match.participant1, match.participant2].find((ref) => ref.type === 'matchWinner');
       if (feeder && feeder.type === 'matchWinner') pushMatchToMatch(feeder.matchId, match.id);
     });

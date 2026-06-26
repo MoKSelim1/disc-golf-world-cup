@@ -169,13 +169,38 @@ export function recomputeKnockoutMatches(
   return recomputed;
 }
 
-export function getKnockoutRoundTwoWinners(matches: KnockoutMatch[]): PlayerId[] {
-  return matches
+export interface RoundTwoOrderOptions {
+  // Pairs each pod's seed1 winner against the OTHER pod's seed2 winner (and
+  // vice versa) for the next round, instead of each pod's own two winners
+  // meeting each other. Mirrors the men's-only round 2 feed swap above so the
+  // next round's matchups line up with each match's actual qualifier feed.
+  crossPodSemis?: boolean;
+}
+
+export function orderRoundTwoMatches(
+  matches: KnockoutMatch[],
+  options: RoundTwoOrderOptions = {},
+): KnockoutMatch[] {
+  const sorted = matches
     .filter((match) => match.round === 2)
     .sort((a, b) => {
       if (a.podIndex !== b.podIndex) return a.podIndex - b.podIndex;
       return a.label === 'seed1' ? -1 : 1;
-    })
+    });
+
+  if (options.crossPodSemis && sorted.length === 4) {
+    // sorted = [pod0seed1, pod0seed2, pod1seed1, pod1seed2]
+    return [sorted[0], sorted[3], sorted[1], sorted[2]];
+  }
+
+  return sorted;
+}
+
+export function getKnockoutRoundTwoWinners(
+  matches: KnockoutMatch[],
+  options: RoundTwoOrderOptions = {},
+): PlayerId[] {
+  return orderRoundTwoMatches(matches, options)
     .map((match) => match.winnerId)
     .filter((playerId): playerId is PlayerId => Boolean(playerId));
 }
