@@ -36,7 +36,7 @@ function CurrentView({ view }: { view: ViewName }) {
 }
 
 export default function App() {
-  const [view, setView] = useState<ViewName>('dashboard');
+  const [view, setView] = useState<ViewName>('fullBracket');
   const status = useTournamentData();
 
   return (
