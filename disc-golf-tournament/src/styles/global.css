@@ -587,9 +587,50 @@ button[type='submit'],
   box-shadow: 0 18px 46px rgba(32, 39, 33, 0.2);
 }
 
+.full-bracket-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.full-bracket-zoom-controls button {
+  border: 1px solid #424643;
+  border-radius: 6px;
+  background: #353735;
+  color: #f2f3ed;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.full-bracket-zoom-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.full-bracket-zoom-controls button:not(:disabled):hover {
+  background: #424643;
+}
+
+.full-bracket-zoom-level {
+  min-width: 3.5em;
+  color: rgba(242, 243, 237, 0.72);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.full-bracket-zoom-frame {
+  position: relative;
+  overflow: hidden;
+}
+
 .full-bracket-canvas {
   position: relative;
   min-width: 100%;
+  transform-origin: top left;
 }
 
 .full-bracket-lines {
