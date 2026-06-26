@@ -700,6 +700,11 @@ button[type='submit'],
 }
 
 /* ---- Tournament bracket chart (group stage + knockout + final four) ---- */
+.bracket-chart-lines path {
+  stroke: rgba(242, 243, 237, 0.5);
+  stroke-width: 2;
+}
+
 .tournament-bracket-phase-header {
   position: absolute;
   top: 0;
