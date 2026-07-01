@@ -258,9 +258,9 @@
           "week": 5,
           "player1Id": "p8",
           "player2Id": "p10",
-          "player1Score": null,
-          "player2Score": null,
-          "winnerId": null
+          "player1Score": 57,
+          "player2Score": 67,
+          "winnerId": "p8"
         }
       ]
     }
@@ -355,5 +355,5 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-25T18:58:27.609Z"
+  "lastUpdated": "2026-07-01T15:10:08.778Z"
 }
