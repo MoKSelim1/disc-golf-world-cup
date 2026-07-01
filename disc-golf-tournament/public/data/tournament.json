@@ -358,18 +358,16 @@
       "podIndex": 0,
       "label": "A",
       "participant1": {
-        "type": "groupSeed",
-        "groupId": "group-1",
-        "seed": 2
+        "type": "player",
+        "playerId": "p4"
       },
       "participant2": {
-        "type": "groupSeed",
-        "groupId": "group-4",
-        "seed": 3
+        "type": "player",
+        "playerId": "p14"
       },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
+      "player1Score": 57,
+      "player2Score": 52,
+      "winnerId": "p14"
     },
     {
       "id": "ko-r1-pod0-b",
@@ -377,18 +375,16 @@
       "podIndex": 0,
       "label": "B",
       "participant1": {
-        "type": "groupSeed",
-        "groupId": "group-4",
-        "seed": 2
+        "type": "player",
+        "playerId": "p13"
       },
       "participant2": {
-        "type": "groupSeed",
-        "groupId": "group-1",
-        "seed": 3
+        "type": "player",
+        "playerId": "p1"
       },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
+      "player1Score": 52,
+      "player2Score": 51,
+      "winnerId": "p1"
     },
     {
       "id": "ko-r1-pod1-a",
@@ -551,7 +547,7 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-06-25T16:18:06.874Z",
+  "lastUpdated": "2026-07-01T02:30:13.245Z",
   "tournamentId": "disc-golf-world-cup-2026",
   "format": "worldCupTopThree"
 }
