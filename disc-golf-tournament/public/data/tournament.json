@@ -433,9 +433,9 @@
         "type": "matchWinner",
         "matchId": "ko-r1-pod0-a"
       },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
+      "player1Score": 54,
+      "player2Score": 56,
+      "winnerId": "p3"
     },
     {
       "id": "ko-r2-pod0-seed2",
@@ -450,9 +450,9 @@
         "type": "matchWinner",
         "matchId": "ko-r1-pod1-a"
       },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
+      "player1Score": 52,
+      "player2Score": 53,
+      "winnerId": "p7"
     },
     {
       "id": "ko-r2-pod1-seed1",
@@ -484,9 +484,9 @@
         "type": "matchWinner",
         "matchId": "ko-r1-pod0-b"
       },
-      "player1Score": null,
-      "player2Score": null,
-      "winnerId": null
+      "player1Score": 50,
+      "player2Score": 58,
+      "winnerId": "p15"
     }
   ],
   "finalStageMatches": [
@@ -495,10 +495,12 @@
       "roundName": "semifinal",
       "roundOrder": 0,
       "participant1": {
-        "type": "tbd"
+        "type": "player",
+        "playerId": "p3"
       },
       "participant2": {
-        "type": "tbd"
+        "type": "player",
+        "playerId": "p15"
       },
       "player1Score": null,
       "player2Score": null,
@@ -509,7 +511,8 @@
       "roundName": "semifinal",
       "roundOrder": 1,
       "participant1": {
-        "type": "tbd"
+        "type": "player",
+        "playerId": "p7"
       },
       "participant2": {
         "type": "tbd"
@@ -547,7 +550,7 @@
       "winnerId": null
     }
   ],
-  "lastUpdated": "2026-07-01T02:30:13.245Z",
+  "lastUpdated": "2026-07-02T16:32:42.553Z",
   "tournamentId": "disc-golf-world-cup-2026",
   "format": "worldCupTopThree"
 }
