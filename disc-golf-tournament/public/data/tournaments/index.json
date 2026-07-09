@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "activeTournamentId": "disc-golf-world-cup-2026",
+  "activeTournamentId": "womens-disc-golf-world-cup-presented-by-house-of",
   "tournaments": [
     {
       "id": "disc-golf-world-cup-2026",
@@ -18,8 +18,8 @@
       "dataPath": "data/tournaments/womens-disc-golf-world-cup-presented-by-house-of.json",
       "format": "groupTopTwoFinal",
       "playerCount": 10,
-      "lastUpdated": "2026-07-01T15:10:08.778Z"
+      "lastUpdated": "2026-07-09T03:22:04.905Z"
     }
   ],
-  "lastUpdated": "2026-07-09T03:02:29.757Z"
+  "lastUpdated": "2026-07-09T03:22:04.905Z"
 }
